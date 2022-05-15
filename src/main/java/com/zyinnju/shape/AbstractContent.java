@@ -21,9 +21,13 @@ import java.io.Serializable;
 public abstract class AbstractContent implements Serializable {
 
 	/**
-	 * 绘制内容的位置
+	 * 绘制内容的起始位置 -- 鼠标一开始点的位置
 	 */
-	protected Point point;
+	protected Point startPoint;
+	/**
+	 * 绘制内容的结束位置 -- 鼠标结束点的位置
+	 */
+	protected Point endPoint;
 	/**
 	 * 绘制内容的颜色
 	 */
@@ -38,6 +42,6 @@ public abstract class AbstractContent implements Serializable {
 	 *
 	 * @param g 画笔
 	 */
-	protected abstract void draw(Graphics2D g);
+	public abstract void draw(Graphics2D g);
 
 }

@@ -14,10 +14,59 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public enum ShapeType implements ValueEnum, Serializable {
+
 	/**
-	 *
+	 * 空心圆
 	 */
-	;
+	CIRCLE("空心圆"),
+	/**
+	 * 实心圆
+	 */
+	FILL_CIRCLE("实心圆"),
+	/**
+	 * 实心椭圆
+	 */
+	FILL_OVAL("实心椭圆"),
+	/**
+	 * 实心矩形
+	 */
+	FILL_RECT("实心矩形"),
+	/**
+	 * 实心圆角矩形
+	 */
+	FILL_ROUND_RECT("实心圆角矩形"),
+	/**
+	 * 六边形
+	 */
+	HEXAGON("六边形"),
+	/**
+	 * 直线
+	 */
+	LINE("直线"),
+	/**
+	 * 椭圆
+	 */
+	OVAL("椭圆"),
+	/**
+	 * 五边形
+	 */
+	PENTAGON("五边形"),
+	/**
+	 * 矩形
+	 */
+	RECTANGLE("矩形"),
+	/**
+	 * 圆角矩形
+	 */
+	ROUND_RECT("圆角矩形"),
+	/**
+	 * 三角形
+	 */
+	TRIANGLE("三角形"),
+	/**
+	 * 图片
+	 */
+	IMAGE("图片");
 
 	private static Map<String, ShapeType> SHAPE_MAP = new HashMap<>();
 

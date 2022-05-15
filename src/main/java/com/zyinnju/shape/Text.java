@@ -38,7 +38,7 @@ public class Text extends AbstractContent {
 	private Boolean isItalicType;
 
 	@Override
-	protected void draw(Graphics2D g) {
+	public void draw(Graphics2D g) {
 
 	}
 }

@@ -1,5 +1,6 @@
 package com.zyinnju.shape;
 
+import com.zyinnju.enums.ShapeType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -25,5 +26,5 @@ public abstract class AbstractShape extends AbstractContent implements Serializa
 	/**
 	 * 图形的类型
 	 */
-
+	protected ShapeType shapeType;
 }
