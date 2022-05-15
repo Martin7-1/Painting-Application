@@ -1,4 +1,4 @@
-package com.zyinnju.shape;
+package com.zyinnju.draw.shape;
 
 import com.zyinnju.utils.PointUtil;
 import lombok.AllArgsConstructor;

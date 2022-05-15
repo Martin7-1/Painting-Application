@@ -1,6 +1,5 @@
-package com.zyinnju.shape;
+package com.zyinnju.draw.tool;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.awt.*;

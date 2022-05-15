@@ -1,10 +1,10 @@
-package com.zyinnju.shape;
+package com.zyinnju.draw.shape;
 
+import com.zyinnju.draw.AbstractContent;
 import com.zyinnju.enums.ShapeType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.awt.*;
 import java.io.Serializable;
 
 /**

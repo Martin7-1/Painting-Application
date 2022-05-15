@@ -1,6 +1,6 @@
 package com.zyinnju.utils;
 
-import com.zyinnju.shape.Point;
+import com.zyinnju.draw.Point;
 
 /**
  * @author Zyi

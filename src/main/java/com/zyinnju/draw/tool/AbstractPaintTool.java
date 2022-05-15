@@ -1,4 +1,6 @@
-package com.zyinnju.shape;
+package com.zyinnju.draw.tool;
+
+import com.zyinnju.draw.AbstractContent;
 
 /**
  * 抽象的画图工具类 - 包括画笔和刷子和橡皮擦
