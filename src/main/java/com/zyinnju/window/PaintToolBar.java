@@ -1,5 +1,6 @@
 package com.zyinnju.window;
 
+import com.zyinnju.handler.GlobalStateHandler;
 import com.zyinnju.utils.StyleUtil;
 import lombok.Getter;
 
@@ -89,8 +90,10 @@ public class PaintToolBar extends JToolBar {
 	 * 当前选择的图标 默认为pencil
 	 */
 	private int curChoice = 3;
+	private PaintMenu menu;
 
 	private void initToolBar() {
+		menu = PaintMenu.getInstance();
 		// 初始化工具栏
 		contentButtonList = new JButton[RESOURCE_LIST.length];
 		// 流式布局
@@ -104,7 +107,7 @@ public class PaintToolBar extends JToolBar {
 		initImageIcon();
 		setFloatable(false);
 		add(fontComboBox);
-		add(fontComboBox);
+		add(fontSizeComboBox);
 		add(italicButton);
 		add(boldButton);
 
@@ -121,12 +124,12 @@ public class PaintToolBar extends JToolBar {
 
 	private void initFontComboBox() {
 		fontComboBox = new JComboBox<>(FONT_LIST);
-		fontSizeComboBox.setPreferredSize(new Dimension(50, 30));
+		fontComboBox.setPreferredSize(new Dimension(100, 30));
 	}
 
 	private void initFontSizeComboBox() {
 		fontSizeComboBox = new JComboBox<>(FONT_SIZE_LIST);
-		fontSizeComboBox.setPreferredSize(new Dimension(100, 30));
+		fontSizeComboBox.setPreferredSize(new Dimension(50, 30));
 	}
 
 	private void initImageIcon() {
@@ -150,6 +153,7 @@ public class PaintToolBar extends JToolBar {
 				for (int j = 0; j < RESOURCE_LIST.length; j++) {
 					// 如果按钮被点击。则设置相应的画笔
 					if (e.getSource().equals(contentButtonList[j])) {
+						System.out.println("you choose: " + TOOL_TIP_LIST[j]);
 						curChoice = j;
 						// drawingArea.createNewGraphics();
 						repaint();
@@ -161,11 +165,11 @@ public class PaintToolBar extends JToolBar {
 
 		// 保存操作
 		contentButtonList[0].addActionListener(e -> {
-//			menu.saveFile();
-//			saved = 1;
+			menu.saveFile();
+			GlobalStateHandler.setIsSaved(true);
 		});
 		// 创建新文件操作
-		// contentButtonList[1].addActionListener(e -> menu.newFile());
+		contentButtonList[1].addActionListener(e -> menu.createNewFile());
 		// 撤销操作
 		// contentButtonList[2].addActionListener(e -> drawingArea.undo());
 

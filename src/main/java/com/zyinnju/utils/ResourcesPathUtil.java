@@ -20,7 +20,7 @@ public class ResourcesPathUtil {
 	public static final String ERASER = ROOT_PATH + "eraser.png";
 	public static final String FONT = ROOT_PATH + "font.png";
 	public static final String PENCIL = ROOT_PATH + "pencil.png";
-	public static final String UNDO = "ROOT_PATH" + "undo.png";
+	public static final String UNDO = ROOT_PATH + "undo.png";
 
 	public static final String FILL_CIRCLE = ROOT_PATH + "fillCircle.png";
 	public static final String FILL_OVAL = ROOT_PATH + "fillOval.png";

@@ -18,4 +18,12 @@ public class PaintMenu {
 	private static class InnerClass {
 		private static final PaintMenu INSTANCE = new PaintMenu();
 	}
+
+	public void saveFile() {
+
+	}
+
+	public void createNewFile() {
+
+	}
 }

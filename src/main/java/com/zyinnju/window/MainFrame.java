@@ -1,5 +1,6 @@
 package com.zyinnju.window;
 
+import com.zyinnju.handler.GlobalStateHandler;
 import com.zyinnju.utils.ResourcesPathUtil;
 import com.zyinnju.utils.StyleUtil;
 import lombok.Data;
@@ -59,10 +60,6 @@ public class MainFrame extends JFrame {
 	 * 鼠标状态
 	 */
 	private JLabel mouseStatusBar;
-	/**
-	 * 是否保存
-	 */
-	private Boolean isSaved = false;
 
 	public void init(String title) {
 		// 设置标题
@@ -75,9 +72,9 @@ public class MainFrame extends JFrame {
 
 		// 设置窗体图标
 		setIcon();
-		// 创建各种基本图形的按钮
 		add(drawPanel, BorderLayout.CENTER);
 		add(mouseStatusBar, BorderLayout.SOUTH);
+		add(paintToolBar, BorderLayout.NORTH);
 		mouseStatusBar.setText("坐标");
 		setVisible(true);
 
@@ -94,7 +91,7 @@ public class MainFrame extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (!isSaved) {
+				if (!GlobalStateHandler.getIsSaved()) {
 					int n = JOptionPane.showConfirmDialog(null, "您还没保存，确定要退出？", "提示", JOptionPane.OK_CANCEL_OPTION);
 					if (n == 0) {
 						System.exit(0);
