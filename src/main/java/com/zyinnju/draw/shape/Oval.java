@@ -8,27 +8,27 @@ import lombok.experimental.SuperBuilder;
 import java.awt.*;
 
 /**
- * 矩形
+ * 椭圆类 与圆的差别是分为长径和短径
  * @author Zyi
  */
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class Rectangle extends AbstractShape {
+public class Oval extends AbstractShape {
 
 	@Override
 	public void draw(Graphics2D g) {
 		g.setColor(color);
 		g.setStroke(new BasicStroke(thickness));
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-			RenderingHints.VALUE_ANTIALIAS_ON);
-		drawRectangle(g);
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		drawOval(g);
 	}
 
-	private void drawRectangle(Graphics2D g) {
-		int width = Math.abs(startPoint.getX() - endPoint.getY());
+	private void drawOval(Graphics2D g) {
+		// 椭圆的长宽不一样
+		int width = Math.abs(startPoint.getX() - endPoint.getX());
 		int height = Math.abs(startPoint.getY() - endPoint.getY());
-		g.drawRect(PointUtil.getMinPointX(startPoint, endPoint),
+		g.drawOval(PointUtil.getMinPointX(startPoint, endPoint),
 			PointUtil.getMinPointY(startPoint, endPoint), width, height);
 	}
 }

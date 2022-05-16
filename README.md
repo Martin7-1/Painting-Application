@@ -8,7 +8,7 @@ Nanjing University Spring Semester 2022 Department of Computer Science and Techn
 
 ### Shape
 
-Shape包主要存储画图工具中的各种图形，所有图形都继承了父类 `AbstractShape` 主要包括：
+Shape包主要存储画图工具中的各种图形，所有图形都继承了父类 `AbstractContent`, 其下主要包括 `AbstractShape`、`AbstractTool` 和 `Text` 主要包括：
 1. `Brush`: 笔刷
 2. `Circle`: 空心圆
 3. `FillCircle`: 实心圆
