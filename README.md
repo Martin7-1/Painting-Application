@@ -17,7 +17,7 @@ Shape包主要存储画图工具中的各种图形，所有图形都继承了父
 6. `FillRoundRect`: 实心圆角矩形 - completed
 7. `Hexagon`: 六边形 - completed
 8. `Images`: 图片
-9. `Line`: 直线
+9. `Line`: 直线 - completed
 10. `Oval`: 椭圆 - completed
 11. `Pencil`: 铅笔
 12. `Pentagon`: 五边形 - completed
