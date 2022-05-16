@@ -86,7 +86,7 @@ public class ColorPanel extends JPanel {
 		childPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		childPanel.setBounds(10, 10, 40, 280);
 		childPanel.setToolTipText("颜色");
-		this.add(childPanel);
+		add(childPanel);
 	}
 
 	private JPanel initUpPanel() {
@@ -136,7 +136,7 @@ public class ColorPanel extends JPanel {
 
 	private void addChooseColorPanel(JPanel downPanel) {
 		JButton btnColor = new JButton();
-		ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("src/main/resources/img/color_48.png")));
+		ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/img/color_48.png")));
 		btnColor.setIcon(imageIcon);
 		btnColor.setPreferredSize(new Dimension(40, 40));
 		btnColor.setToolTipText("更多颜色");

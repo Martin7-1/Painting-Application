@@ -65,21 +65,22 @@ public class MainFrame extends JFrame {
 
 	public void init(String title) {
 		// 设置标题
-		this.setTitle(title);
+		setTitle(title);
 		// 设置窗口大小
-		this.setSize(950, 600);
+		setSize(950, 600);
 		// 居中显示
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		add(colorPanel, BorderLayout.WEST);
 
 		// 设置窗体图标
 		setIcon();
 		// 创建各种基本图形的按钮
-		this.add(drawPanel, BorderLayout.CENTER);
-		this.add(mouseStatusBar, BorderLayout.SOUTH);
+		add(drawPanel, BorderLayout.CENTER);
+		add(mouseStatusBar, BorderLayout.SOUTH);
 		mouseStatusBar.setText("坐标");
+		setVisible(true);
 
-		// 由于JLable是透明的，当我们把JLabel控件加载到JPanel控件之上时， 会发现JLabel的背景色总是和JPanel的背景色保持一致,
+		// 由于JLabel是透明的，当我们把JLabel控件加载到JPanel控件之上时， 会发现JLabel的背景色总是和JPanel的背景色保持一致,
 		// 设置该组件为透明
 		mouseStatusBar.setOpaque(true);
 		mouseStatusBar.setBackground(StyleUtil.BACKGROUND_COLOR);
@@ -106,7 +107,7 @@ public class MainFrame extends JFrame {
 
 	private void setIcon() {
 		try {
-			ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("main/resources/img/themeicon.png")));
+			ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/img/themeicon.png")));
 			Image image = imageIcon.getImage();
 			this.setIconImage(image);
 		} catch (Exception e) {
