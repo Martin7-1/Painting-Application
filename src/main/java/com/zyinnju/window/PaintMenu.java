@@ -1,5 +1,9 @@
 package com.zyinnju.window;
 
+import javax.swing.*;
+
+import static com.zyinnju.utils.ResourcesPathUtil.*;
+
 /**
  * 菜单类
  *
@@ -8,7 +12,7 @@ package com.zyinnju.window;
 public class PaintMenu {
 
 	private PaintMenu() {
-
+		initMenu();
 	}
 
 	public static PaintMenu getInstance() {
@@ -17,6 +21,13 @@ public class PaintMenu {
 
 	private static class InnerClass {
 		private static final PaintMenu INSTANCE = new PaintMenu();
+	}
+
+	private JMenuBar menuBar;
+	private JMenuItem[] menuItemList;
+
+	private void initMenu() {
+
 	}
 
 	public void saveFile() {

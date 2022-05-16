@@ -91,7 +91,7 @@ public class MainFrame extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				if (!GlobalStateHandler.getIsSaved()) {
+				if (!GlobalStateHandler.isSaved()) {
 					int n = JOptionPane.showConfirmDialog(null, "您还没保存，确定要退出？", "提示", JOptionPane.OK_CANCEL_OPTION);
 					if (n == 0) {
 						System.exit(0);
