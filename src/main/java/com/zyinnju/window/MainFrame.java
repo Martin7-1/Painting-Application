@@ -23,23 +23,6 @@ import java.util.Objects;
 @Data
 public class MainFrame extends JFrame {
 
-	private MainFrame() {
-		// private constructor, just for singleton
-		colorPanel = ColorPanel.getInstance();
-		drawPanel = DrawPanel.getInstance();
-		paintMenu = PaintMenu.getInstance();
-		paintToolBar = PaintToolBar.getInstance();
-		mouseStatusBar = new JLabel();
-	}
-
-	public static MainFrame getInstance() {
-		return InnerClass.INSTANCE;
-	}
-
-	private static class InnerClass {
-		private static final MainFrame INSTANCE = new MainFrame();
-	}
-
 	/**
 	 * 颜色选择的面板
 	 */
@@ -60,6 +43,18 @@ public class MainFrame extends JFrame {
 	 * 鼠标状态
 	 */
 	private JLabel mouseStatusBar;
+	private MainFrame() {
+		// private constructor, just for singleton
+		colorPanel = ColorPanel.getInstance();
+		drawPanel = DrawPanel.getInstance();
+		paintMenu = PaintMenu.getInstance();
+		paintToolBar = PaintToolBar.getInstance();
+		mouseStatusBar = new JLabel();
+	}
+
+	public static MainFrame getInstance() {
+		return InnerClass.INSTANCE;
+	}
 
 	public void init(String title) {
 		// 设置标题
@@ -111,5 +106,9 @@ public class MainFrame extends JFrame {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "图标异常");
 		}
+	}
+
+	private static class InnerClass {
+		private static final MainFrame INSTANCE = new MainFrame();
 	}
 }

@@ -10,26 +10,6 @@ import static com.zyinnju.utils.ResourcesPathUtil.*;
 public class GlobalStateHandler {
 
 	/**
-	 * 是否保存
-	 */
-	private static boolean isSaved = false;
-	/**
-	 * 画笔粗细
-	 */
-	private static int thickness = 1;
-	/**
-	 * 是否是粗体
-	 */
-	private static boolean isBoldType = false;
-	/**
-	 * 是否是斜体
-	 */
-	private static boolean isItalicType = false;
-	/**
-	 * 当前选择的内容索引
-	 */
-	private static int curContentIndex = 3;
-	/**
 	 * 选择的图标
 	 */
 	public static final String[] RESOURCE_LIST = {SAVE, REFRESH, UNDO, PENCIL, LINE, RECTANGLE, FILL_RECT, OVAL, FILL_OVAL
@@ -49,6 +29,26 @@ public class GlobalStateHandler {
 	 * 笔粗细的提示
 	 */
 	private static final String[] STROKE_LIST = new String[]{STROKE_THINNEST, STROKE_THINNER, STROKE_NORMAL, STROKE_THICKER, STROKE_THICKEST};
+	/**
+	 * 是否保存
+	 */
+	private static boolean isSaved = false;
+	/**
+	 * 画笔粗细
+	 */
+	private static int thickness = 1;
+	/**
+	 * 是否是粗体
+	 */
+	private static boolean isBoldType = false;
+	/**
+	 * 是否是斜体
+	 */
+	private static boolean isItalicType = false;
+	/**
+	 * 当前选择的内容索引
+	 */
+	private static int curContentIndex = 3;
 
 	public static boolean isSaved() {
 		return isSaved;

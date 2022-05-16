@@ -8,8 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-import static com.zyinnju.utils.ResourcesPathUtil.*;
-
 /**
  * 工具栏类 用于选择所要绘制的图形等
  *
@@ -18,18 +16,7 @@ import static com.zyinnju.utils.ResourcesPathUtil.*;
 @Getter
 public class PaintToolBar extends JToolBar {
 
-	private PaintToolBar() {
-		initToolBar();
-	}
-
-	public static PaintToolBar getInstance() {
-		return InnerClass.INSTANCE;
-	}
-
-	private static class InnerClass {
-		private static final PaintToolBar INSTANCE = new PaintToolBar();
-	}
-
+	private static final int LENGTH = GlobalStateHandler.getResourceSize();
 	/**
 	 * 各种图形的选择按钮
 	 */
@@ -78,8 +65,13 @@ public class PaintToolBar extends JToolBar {
 	 * 菜单栏
 	 */
 	private PaintMenu menu;
+	private PaintToolBar() {
+		initToolBar();
+	}
 
-	private static final int LENGTH = GlobalStateHandler.getResourceSize();
+	public static PaintToolBar getInstance() {
+		return InnerClass.INSTANCE;
+	}
 
 	private void initToolBar() {
 		menu = PaintMenu.getInstance();
@@ -170,5 +162,9 @@ public class PaintToolBar extends JToolBar {
 		fontSizeComboBox.addItemListener(e -> curFontSize = Integer.parseInt(GlobalStateHandler.getFontSize(fontSizeComboBox.getSelectedIndex())));
 		// 设置字体
 		fontComboBox.addItemListener(e -> curFontName = GlobalStateHandler.getFont(fontComboBox.getSelectedIndex()));
+	}
+
+	private static class InnerClass {
+		private static final PaintToolBar INSTANCE = new PaintToolBar();
 	}
 }

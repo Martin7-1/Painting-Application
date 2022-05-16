@@ -17,18 +17,17 @@ import java.util.Objects;
  */
 public class ColorPanel extends JPanel {
 
-	private ColorPanel() {
-		initColorPanel();
-	}
-
-	public static ColorPanel getInstance() {
-		return InnerClass.INSTANCE;
-	}
-
-	private static class InnerClass {
-		private static final ColorPanel INSTANCE = new ColorPanel();
-	}
-
+	/**
+	 * 调色板
+	 * 颜色数组，用来设置按钮的背景颜色
+	 */
+	private final Color[] colorList = {new Color(255, 255, 255), new Color(0, 0, 0), new Color(127, 127, 127),
+		new Color(195, 195, 195), new Color(136, 0, 21), new Color(185, 122, 87), new Color(237, 28, 36),
+		new Color(255, 174, 201), new Color(255, 127, 39), new Color(255, 242, 0), new Color(239, 228, 176),
+		new Color(34, 117, 76), new Color(181, 230, 29), new Color(0, 162, 232), new Color(153, 217, 234),
+		new Color(63, 72, 204), new Color(112, 146, 190), new Color(163, 73, 164), new Color(200, 191, 231),
+		new Color(89, 173, 154), new Color(8, 193, 194), new Color(9, 253, 76), new Color(153, 217, 234),
+		new Color(199, 73, 4)};
 	/**
 	 * 记录当前所选择的颜色
 	 */
@@ -46,18 +45,13 @@ public class ColorPanel extends JPanel {
 	 * 选择颜色的面板
 	 */
 	private JPanel childPanel;
+	private ColorPanel() {
+		initColorPanel();
+	}
 
-	/**
-	 * 调色板
-	 * 颜色数组，用来设置按钮的背景颜色
-	 */
-	private final Color[] colorList = {new Color(255, 255, 255), new Color(0, 0, 0), new Color(127, 127, 127),
-		new Color(195, 195, 195), new Color(136, 0, 21), new Color(185, 122, 87), new Color(237, 28, 36),
-		new Color(255, 174, 201), new Color(255, 127, 39), new Color(255, 242, 0), new Color(239, 228, 176),
-		new Color(34, 117, 76), new Color(181, 230, 29), new Color(0, 162, 232), new Color(153, 217, 234),
-		new Color(63, 72, 204), new Color(112, 146, 190), new Color(163, 73, 164), new Color(200, 191, 231),
-		new Color(89, 173, 154), new Color(8, 193, 194), new Color(9, 253, 76), new Color(153, 217, 234),
-		new Color(199, 73, 4)};
+	public static ColorPanel getInstance() {
+		return InnerClass.INSTANCE;
+	}
 
 	private void initColorPanel() {
 		// 初始化颜色面板
@@ -178,5 +172,9 @@ public class ColorPanel extends JPanel {
 		addChooseColorPanel(downPanel);
 		addMultiColorPanel(downPanel);
 		return downPanel;
+	}
+
+	private static class InnerClass {
+		private static final ColorPanel INSTANCE = new ColorPanel();
 	}
 }
