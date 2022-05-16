@@ -22,6 +22,9 @@ public class MainFrame extends JFrame {
 	private MainFrame() {
 		// private constructor, just for singleton
 		colorPanel = ColorPanel.getInstance();
+		drawPanel = DrawPanel.getInstance();
+		paintMenu = PaintMenu.getInstance();
+		paintToolBar = PaintToolBar.getInstance();
 	}
 
 	public static MainFrame getInstance() {
@@ -40,4 +43,20 @@ public class MainFrame extends JFrame {
 	 * 颜色选择的面板
 	 */
 	private ColorPanel colorPanel;
+	/**
+	 * 绘画面板
+	 */
+	private DrawPanel drawPanel;
+	/**
+	 * 菜单栏
+	 */
+	private PaintMenu paintMenu;
+	/**
+	 * 工具栏
+	 */
+	private PaintToolBar paintToolBar;
+
+	public void init(String title) {
+
+	}
 }

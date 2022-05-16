@@ -8,4 +8,20 @@ import javax.swing.*;
  * @author Zyi
  */
 public class DrawPanel extends JPanel {
+
+	private DrawPanel() {
+
+	}
+
+	public static DrawPanel getInstance() {
+		return InnerClass.getInstance();
+	}
+
+	private static class InnerClass {
+		private static final DrawPanel INSTANCE = new DrawPanel();
+
+		private static DrawPanel getInstance() {
+			return INSTANCE;
+		}
+	}
 }

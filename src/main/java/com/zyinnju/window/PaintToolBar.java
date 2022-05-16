@@ -11,7 +11,7 @@ public class PaintToolBar {
 
 	}
 
-	private static PaintToolBar getInstance() {
+	public static PaintToolBar getInstance() {
 		return InnerClass.getInstance();
 	}
 
