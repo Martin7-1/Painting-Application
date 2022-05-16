@@ -79,12 +79,12 @@ public enum ShapeType implements ValueEnum, Serializable {
 	@Setter
 	private String value;
 
+	public static ShapeType getShapeTypeByValue(String value) {
+		return SHAPE_MAP.get(value);
+	}
+
 	@Override
 	public String getValue() {
 		return this.value;
-	}
-
-	public static ShapeType getShapeTypeByValue(String value) {
-		return SHAPE_MAP.get(value);
 	}
 }

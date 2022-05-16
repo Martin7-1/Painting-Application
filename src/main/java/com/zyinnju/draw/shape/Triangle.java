@@ -31,13 +31,13 @@ public class Triangle extends AbstractShape {
 
 	private int[] getPointsX() {
 		int xGap = Math.abs(startPoint.getX() - endPoint.getX());
-		return new int[]{ PointUtil.getMinPointX(startPoint, endPoint) + xGap / 2,
-			PointUtil.getMaxPointX(startPoint, endPoint), PointUtil.getMinPointX(startPoint, endPoint) };
+		return new int[]{PointUtil.getMinPointX(startPoint, endPoint) + xGap / 2,
+			PointUtil.getMaxPointX(startPoint, endPoint), PointUtil.getMinPointX(startPoint, endPoint)};
 	}
 
 	private int[] getPointsY() {
 		int yGap = Math.abs(startPoint.getY() - endPoint.getY());
 		int maxPoint = PointUtil.getMaxPointY(startPoint, endPoint);
-		return new int[] { PointUtil.getMinPointY(startPoint, endPoint), maxPoint, maxPoint };
+		return new int[]{PointUtil.getMinPointY(startPoint, endPoint), maxPoint, maxPoint};
 	}
 }

@@ -39,6 +39,10 @@ public class Text extends AbstractContent {
 
 	@Override
 	public void draw(Graphics2D g) {
-
+		g.setColor(color);
+		g.setFont(new Font(fontName, (isBoldType ? Font.BOLD : Font.PLAIN) + (isItalicType ? Font.ITALIC : Font.PLAIN), fontSize));
+		if (text != null) {
+			g.drawString(text, startPoint.getX(), startPoint.getY());
+		}
 	}
 }

@@ -9,12 +9,13 @@ import java.awt.*;
 
 /**
  * 五边形类
+ *
  * @author Zyi
  */
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class Pentagon extends AbstractShape{
+public class Pentagon extends AbstractShape {
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -37,7 +38,7 @@ public class Pentagon extends AbstractShape{
 		int pointFour = PointUtil.getMinPointX(startPoint, endPoint) + (int) (xGap / (2 * Math.sqrt(3)));
 		int pointFive = PointUtil.getMinPointX(startPoint, endPoint);
 
-		return new int[] { pointOne, pointTwo, pointThree, pointFour, pointFive };
+		return new int[]{pointOne, pointTwo, pointThree, pointFour, pointFive};
 	}
 
 	private int[] getPointsY() {
@@ -47,6 +48,6 @@ public class Pentagon extends AbstractShape{
 		int pointTwo = PointUtil.getMinPointY(startPoint, endPoint) + (int) (yGap / 2 * Math.sqrt(3));
 		int pointThree = PointUtil.getMaxPointY(startPoint, endPoint);
 
-		return new int[] { pointOne, pointTwo, pointThree, pointThree, pointTwo };
+		return new int[]{pointOne, pointTwo, pointThree, pointThree, pointTwo};
 	}
 }

@@ -4,6 +4,7 @@ import com.zyinnju.draw.AbstractContent;
 
 /**
  * 抽象的画图工具类 - 包括画笔和刷子和橡皮擦
+ *
  * @author Zyi
  */
 public abstract class AbstractPaintTool extends AbstractContent {

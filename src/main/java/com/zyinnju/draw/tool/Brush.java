@@ -6,6 +6,7 @@ import java.awt.*;
 
 /**
  * 笔刷类
+ *
  * @author Zyi
  */
 @NoArgsConstructor

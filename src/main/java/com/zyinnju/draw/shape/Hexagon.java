@@ -37,7 +37,7 @@ public class Hexagon extends AbstractShape {
 		int pointFour = PointUtil.getMaxPointX(startPoint, endPoint);
 
 		// 从左上开始顺时针
-		return new int[] { pointOne, pointThree, pointFour, pointThree, pointOne, pointTwo };
+		return new int[]{pointOne, pointThree, pointFour, pointThree, pointOne, pointTwo};
 	}
 
 	private int[] getPointsY() {
@@ -48,6 +48,6 @@ public class Hexagon extends AbstractShape {
 		int pointThree = PointUtil.getMaxPointY(startPoint, endPoint);
 
 		// 从左上开始顺时针
-		return new int[] { pointTwo, pointTwo, pointOne, pointThree, pointThree, pointOne };
+		return new int[]{pointTwo, pointTwo, pointOne, pointThree, pointThree, pointOne};
 	}
 }
