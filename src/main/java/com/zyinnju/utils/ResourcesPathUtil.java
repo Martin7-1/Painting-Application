@@ -15,6 +15,7 @@ public class ResourcesPathUtil {
 	public static final String OPEN = ROOT_PATH + "open.png";
 	public static final String REFRESH = ROOT_PATH + "refresh.png";
 	public static final String SAVE = ROOT_PATH + "save.png";
+	public static final String BRUSH = ROOT_PATH + "brush.png";
 
 	public static final String ERASER = ROOT_PATH + "eraser.png";
 	public static final String FONT = ROOT_PATH + "font.png";
@@ -26,12 +27,14 @@ public class ResourcesPathUtil {
 	public static final String FILL_RECT = ROOT_PATH + "fillRect.png";
 	public static final String FILL_ROUND_RECT = ROOT_PATH + "fillRoundRect.png";
 
+	public static final String CIRCLE = ROOT_PATH + "circle.png";
 	public static final String HEXAGON = ROOT_PATH + "hexagon.png";
 	public static final String LINE = ROOT_PATH + "line.png";
 	public static final String OVAL = ROOT_PATH + "oval.png";
 	public static final String PENTAGON = ROOT_PATH + "pentagon.png";
 	public static final String RECTANGLE = ROOT_PATH + "rectangle.png";
 	public static final String TRIANGLE = ROOT_PATH + "triangle.png";
+	public static final String ROUND_RECT = ROOT_PATH + "roundRect.png";
 
 	public static final String STROKE_THINNEST = ROOT_PATH + "stroke.png";
 	public static final String STROKE_THINNER = ROOT_PATH + "stroke1.png";
