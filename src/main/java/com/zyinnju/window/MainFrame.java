@@ -72,6 +72,7 @@ public class MainFrame extends JFrame {
 		add(paintToolBar, BorderLayout.NORTH);
 		mouseStatusBar.setText("坐标");
 		setVisible(true);
+		setJMenuBar(paintMenu.getMenuBar());
 
 		// 由于JLabel是透明的，当我们把JLabel控件加载到JPanel控件之上时， 会发现JLabel的背景色总是和JPanel的背景色保持一致,
 		// 设置该组件为透明

@@ -1,5 +1,9 @@
 package com.zyinnju.handler;
 
+import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.zyinnju.utils.ResourcesPathUtil.*;
 
 /**
@@ -28,7 +32,17 @@ public class GlobalStateHandler {
 	/**
 	 * 笔粗细的提示
 	 */
-	private static final String[] STROKE_LIST = new String[]{STROKE_THINNEST, STROKE_THINNER, STROKE_NORMAL, STROKE_THICKER, STROKE_THICKEST};
+	private static final String[] STROKE_LIST = new String[]{STROKE_THINNEST, STROKE_THINNER, STROKE_THICKER, STROKE_THICKEST};
+	/**
+	 * 画笔粗细map
+	 */
+	private static final Map<String, Integer> STROKE_MAP = new HashMap<>();
+	static {
+		STROKE_MAP.put("thinnest", 1);
+		STROKE_MAP.put("thinner", 5);
+		STROKE_MAP.put("thicker", 15);
+		STROKE_MAP.put("thickest", 25);
+	}
 	/**
 	 * 是否保存
 	 */
@@ -49,6 +63,10 @@ public class GlobalStateHandler {
 	 * 当前选择的内容索引
 	 */
 	private static int curContentIndex = 3;
+	/**
+	 * 当前颜色
+	 */
+	private static Color curColor = Color.BLACK;
 
 	public static boolean isSaved() {
 		return isSaved;
@@ -62,8 +80,8 @@ public class GlobalStateHandler {
 		return thickness;
 	}
 
-	public static void setThickness(int thickness) {
-		GlobalStateHandler.thickness = thickness;
+	public static void setThickness(String thickness) {
+		GlobalStateHandler.thickness = STROKE_MAP.get(thickness);
 	}
 
 	public static boolean isBoldType() {
@@ -116,5 +134,17 @@ public class GlobalStateHandler {
 
 	public static String getStrokeSource(int index) {
 		return STROKE_LIST[index];
+	}
+
+	public static int getDrawWidth(String width) {
+		return STROKE_MAP.get(width);
+	}
+
+	public static Color getCurColor() {
+		return curColor;
+	}
+
+	public static void setCurColor(Color curColor) {
+		GlobalStateHandler.curColor = curColor;
 	}
 }

@@ -64,8 +64,10 @@ public class PaintToolBar extends JToolBar {
 	/**
 	 * 菜单栏
 	 */
-	private PaintMenu menu;
+	private final PaintMenu menu;
+
 	private PaintToolBar() {
+		menu = PaintMenu.getInstance();
 		initToolBar();
 	}
 
@@ -74,7 +76,6 @@ public class PaintToolBar extends JToolBar {
 	}
 
 	private void initToolBar() {
-		menu = PaintMenu.getInstance();
 		// 初始化工具栏
 		contentButtonList = new JButton[LENGTH];
 		// 流式布局

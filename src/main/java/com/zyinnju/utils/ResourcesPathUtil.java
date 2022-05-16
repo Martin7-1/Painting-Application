@@ -37,9 +37,8 @@ public class ResourcesPathUtil {
 	public static final String TRIANGLE = ROOT_PATH + "triangle.png";
 	public static final String ROUND_RECT = ROOT_PATH + "roundRect.png";
 
-	public static final String STROKE_THINNEST = ROOT_PATH + "stroke.png";
-	public static final String STROKE_THINNER = ROOT_PATH + "stroke1.png";
-	public static final String STROKE_NORMAL = ROOT_PATH + "stroke2.png";
+	public static final String STROKE_THINNEST = ROOT_PATH + "stroke1.png";
+	public static final String STROKE_THINNER = ROOT_PATH + "stroke2.png";
 	public static final String STROKE_THICKER = ROOT_PATH + "stroke3.png";
 	public static final String STROKE_THICKEST = ROOT_PATH + "stroke4.png";
 }

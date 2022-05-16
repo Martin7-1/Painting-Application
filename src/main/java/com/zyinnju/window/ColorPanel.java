@@ -1,5 +1,6 @@
 package com.zyinnju.window;
 
+import com.zyinnju.handler.GlobalStateHandler;
 import com.zyinnju.utils.ResourcesPathUtil;
 import com.zyinnju.utils.StyleUtil;
 import lombok.Getter;
@@ -68,11 +69,11 @@ public class ColorPanel extends JPanel {
 		childPanel.add(downPanel);
 	}
 
-	public Color chooseColor() {
+	public void chooseColor() {
 		Color color = JColorChooser.showDialog(null, "请选择颜色", curColor);
 		curColor = color;
 		backButton.setBackground(color);
-		return color;
+		GlobalStateHandler.setCurColor(curColor);
 	}
 
 	private void initChildPanel() {
