@@ -5,6 +5,7 @@ import com.zyinnju.enums.ShapeType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.awt.*;
 import java.io.Serializable;
 
 /**
@@ -28,4 +29,14 @@ public abstract class AbstractShape extends AbstractContent implements Serializa
 	 * 图形的类型
 	 */
 	protected ShapeType shapeType;
+
+	@Override
+	public void draw(Graphics2D g) {
+		// 设置颜色
+		g.setPaint(color);
+		// 设置线宽
+		g.setStroke(new BasicStroke(thickness));
+		// 设置渲染算法
+		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	}
 }

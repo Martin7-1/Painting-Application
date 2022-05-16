@@ -17,9 +17,7 @@ public class Hexagon extends AbstractShape {
 
 	@Override
 	public void draw(Graphics2D g) {
-		g.setColor(color);
-		g.setStroke(new BasicStroke(thickness));
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		super.draw(g);
 		drawHexagon(g);
 	}
 

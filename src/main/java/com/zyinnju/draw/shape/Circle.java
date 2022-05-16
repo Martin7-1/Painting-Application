@@ -17,12 +17,7 @@ public class Circle extends AbstractShape {
 
 	@Override
 	public void draw(Graphics2D g) {
-		// 设置颜色
-		g.setPaint(color);
-		// 设置线宽
-		g.setStroke(new BasicStroke(thickness));
-		// 设置渲染算法
-		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		super.draw(g);
 		drawOval(g);
 	}
 
