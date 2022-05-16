@@ -1,6 +1,5 @@
 package com.zyinnju.draw.shape;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -12,7 +11,6 @@ import java.awt.*;
  * @author Zyi
  */
 @NoArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 public class Line extends AbstractShape {
 

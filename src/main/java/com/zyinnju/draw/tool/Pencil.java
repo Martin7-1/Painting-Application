@@ -12,7 +12,6 @@ import java.awt.*;
  * @author Zyi
  */
 @NoArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 public class Pencil extends AbstractPaintTool {
 

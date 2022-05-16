@@ -12,15 +12,11 @@ public class PaintToolBar {
 	}
 
 	public static PaintToolBar getInstance() {
-		return InnerClass.getInstance();
+		return InnerClass.INSTANCE;
 	}
 
 	private static class InnerClass {
 		private static final PaintToolBar INSTANCE = new PaintToolBar();
-
-		private static PaintToolBar getInstance() {
-			return INSTANCE;
-		}
 	}
 
 

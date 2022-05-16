@@ -1,6 +1,8 @@
 package com.zyinnju.draw.shape;
 
 import com.zyinnju.utils.PointUtil;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.awt.*;
 
@@ -9,6 +11,8 @@ import java.awt.*;
  *
  * @author Zyi
  */
+@NoArgsConstructor
+@SuperBuilder
 public class FillOval extends AbstractShape {
 
 	@Override

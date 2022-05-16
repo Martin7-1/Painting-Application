@@ -1,12 +1,18 @@
 package com.zyinnju.draw.tool;
 
 import com.zyinnju.draw.AbstractContent;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
  * 抽象的画图工具类 - 包括画笔和刷子和橡皮擦
  *
  * @author Zyi
  */
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
 public abstract class AbstractPaintTool extends AbstractContent {
 
 	/**

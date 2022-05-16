@@ -1,7 +1,10 @@
 package com.zyinnju.draw.shape;
 
 import com.zyinnju.utils.PointUtil;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.awt.*;
@@ -15,7 +18,6 @@ import java.awt.*;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 public class FillRoundRect extends AbstractShape {
 

@@ -14,14 +14,10 @@ public class DrawPanel extends JPanel {
 	}
 
 	public static DrawPanel getInstance() {
-		return InnerClass.getInstance();
+		return InnerClass.INSTANCE;
 	}
 
 	private static class InnerClass {
 		private static final DrawPanel INSTANCE = new DrawPanel();
-
-		private static DrawPanel getInstance() {
-			return INSTANCE;
-		}
 	}
 }

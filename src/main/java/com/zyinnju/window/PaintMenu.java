@@ -12,14 +12,10 @@ public class PaintMenu {
 	}
 
 	public static PaintMenu getInstance() {
-		return InnerClass.getInstance();
+		return InnerClass.INSTANCE;
 	}
 
 	private static class InnerClass {
 		private static final PaintMenu INSTANCE = new PaintMenu();
-
-		private static PaintMenu getInstance() {
-			return INSTANCE;
-		}
 	}
 }

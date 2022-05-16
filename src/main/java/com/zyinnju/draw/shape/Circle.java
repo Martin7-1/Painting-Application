@@ -1,7 +1,6 @@
 package com.zyinnju.draw.shape;
 
 import com.zyinnju.utils.PointUtil;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
@@ -11,7 +10,6 @@ import java.awt.*;
  * @author Zyi
  */
 @NoArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 public class Circle extends AbstractShape {
 

@@ -21,15 +21,11 @@ public class ColorPanel extends JPanel {
 	}
 
 	public static ColorPanel getInstance() {
-		return InnerClass.getInstance();
+		return InnerClass.INSTANCE;
 	}
 
 	private static class InnerClass {
 		private static final ColorPanel INSTANCE = new ColorPanel();
-
-		private static ColorPanel getInstance() {
-			return INSTANCE;
-		}
 	}
 
 	/**
@@ -140,7 +136,7 @@ public class ColorPanel extends JPanel {
 
 	private void addChooseColorPanel(JPanel downPanel) {
 		JButton btnColor = new JButton();
-		ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/main/resources/img/color_48.png")));
+		ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("src/main/resources/img/color_48.png")));
 		btnColor.setIcon(imageIcon);
 		btnColor.setPreferredSize(new Dimension(40, 40));
 		btnColor.setToolTipText("更多颜色");
