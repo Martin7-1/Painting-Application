@@ -1,21 +1,32 @@
 package com.zyinnju.draw.shape;
 
 import com.zyinnju.utils.PointUtil;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.awt.*;
 
 /**
- * 矩形
+ * 圆角矩形类
  *
  * @author Zyi
  */
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class Rectangle extends AbstractShape {
+public class RoundRectangle extends AbstractShape {
+
+	/**
+	 * 圆角的水平直径
+	 */
+	private Integer arcWidth;
+	/**
+	 * 圆角的竖直直径
+	 */
+	private Integer arcHeight;
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -23,13 +34,13 @@ public class Rectangle extends AbstractShape {
 		g.setStroke(new BasicStroke(thickness));
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 			RenderingHints.VALUE_ANTIALIAS_ON);
-		drawRectangle(g);
+		drawRoundRectangle(g);
 	}
 
-	private void drawRectangle(Graphics2D g) {
+	private void drawRoundRectangle(Graphics2D g) {
 		int width = Math.abs(startPoint.getX() - endPoint.getY());
 		int height = Math.abs(startPoint.getY() - endPoint.getY());
-		g.drawRect(PointUtil.getMinPointX(startPoint, endPoint),
-			PointUtil.getMinPointY(startPoint, endPoint), width, height);
+		g.drawRoundRect(PointUtil.getMinPointX(startPoint, endPoint),
+			PointUtil.getMinPointY(startPoint, endPoint), width, height, arcWidth, arcHeight);
 	}
 }

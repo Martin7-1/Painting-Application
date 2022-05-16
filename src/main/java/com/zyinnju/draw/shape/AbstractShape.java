@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 /**
  * 抽象的图形类
+ *
  * @author Zyi
  */
 @ToString(callSuper = true)

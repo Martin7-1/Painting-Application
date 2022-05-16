@@ -10,19 +10,19 @@ Nanjing University Spring Semester 2022 Department of Computer Science and Techn
 
 Shape包主要存储画图工具中的各种图形，所有图形都继承了父类 `AbstractContent`, 其下主要包括 `AbstractShape`、`AbstractTool` 和 `Text` 主要包括：
 1. `Brush`: 笔刷
-2. `Circle`: 空心圆
-3. `FillCircle`: 实心圆
-4. `FillOval`: 实心椭圆
-5. `FillRect`: 实心矩形
-6. `FillRoundRect`: 实心圆角矩形
+2. `Circle`: 空心圆 - completed
+3. `FillCircle`: 实心圆 - completed
+4. `FillOval`: 实心椭圆 - completed
+5. `FillRect`: 实心矩形 - completed
+6. `FillRoundRect`: 实心圆角矩形 - completed
 7. `Hexagon`: 六边形
 8. `Images`: 图片
 9. `Line`: 直线
-10. `Oval`: 椭圆
+10. `Oval`: 椭圆 - completed
 11. `Pencil`: 铅笔
 12. `Pentagon`: 五边形
-13. `Rectangle`: 矩形
-14. `RoundRect`: 圆角矩形
+13. `Rectangle`: 矩形 - completed
+14. `RoundRect`: 圆角矩形 - completed
 15. `Text`: 文字
 16. `Triangle`: 三角形
 
