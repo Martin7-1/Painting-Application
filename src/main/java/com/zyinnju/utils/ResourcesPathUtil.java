@@ -8,6 +8,7 @@ public class ResourcesPathUtil {
 	private static final String ROOT_PATH = "/img/";
 
 	public static final String COLOR_CHOOSER = ROOT_PATH + "color_48.png";
+	public static final String MENU_COLOR_CHOOSER = ROOT_PATH + "color.png";
 	public static final String ICON = ROOT_PATH + "themeIcon.png";
 	public static final String CURSOR = ROOT_PATH + "cursor.png";
 	public static final String EXIT = ROOT_PATH + "exit.png";

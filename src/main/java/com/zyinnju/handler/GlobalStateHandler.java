@@ -109,4 +109,12 @@ public class GlobalStateHandler {
 	public static String getFont(int index) {
 		return FONT_LIST[index];
 	}
+
+	public static int getStrokeSize() {
+		return STROKE_LIST.length;
+	}
+
+	public static String getStrokeSource(int index) {
+		return STROKE_LIST[index];
+	}
 }
