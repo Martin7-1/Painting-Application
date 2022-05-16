@@ -1,5 +1,6 @@
 package com.zyinnju.window;
 
+import com.zyinnju.utils.ResourcesPathUtil;
 import com.zyinnju.utils.StyleUtil;
 import lombok.Getter;
 
@@ -136,7 +137,7 @@ public class ColorPanel extends JPanel {
 
 	private void addChooseColorPanel(JPanel downPanel) {
 		JButton btnColor = new JButton();
-		ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/img/color_48.png")));
+		ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource(ResourcesPathUtil.COLOR_CHOOSER)));
 		btnColor.setIcon(imageIcon);
 		btnColor.setPreferredSize(new Dimension(40, 40));
 		btnColor.setToolTipText("更多颜色");

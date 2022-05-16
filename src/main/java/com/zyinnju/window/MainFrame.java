@@ -1,5 +1,6 @@
 package com.zyinnju.window;
 
+import com.zyinnju.utils.ResourcesPathUtil;
 import com.zyinnju.utils.StyleUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -107,7 +108,7 @@ public class MainFrame extends JFrame {
 
 	private void setIcon() {
 		try {
-			ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/img/themeicon.png")));
+			ImageIcon imageIcon = new ImageIcon(Objects.requireNonNull(getClass().getResource(ResourcesPathUtil.ICON)));
 			Image image = imageIcon.getImage();
 			this.setIconImage(image);
 		} catch (Exception e) {
