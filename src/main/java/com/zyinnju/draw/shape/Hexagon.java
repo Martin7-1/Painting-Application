@@ -45,12 +45,11 @@ public class Hexagon extends AbstractShape {
 	private int[] getPointsY() {
 		int yGap = Math.abs(startPoint.getY() - endPoint.getY());
 		// x坐标分别是0、1/4gap、3/4gap、1
-		int pointOne = PointUtil.getMinPointY(startPoint, endPoint) + yGap / 4;
+		int pointOne = PointUtil.getMinPointY(startPoint, endPoint) + yGap / 2;
 		int pointTwo = PointUtil.getMinPointY(startPoint, endPoint);
-		int pointThree = PointUtil.getMaxPointY(startPoint, endPoint) - yGap / 4;
-		int pointFour = PointUtil.getMaxPointY(startPoint, endPoint);
+		int pointThree = PointUtil.getMaxPointY(startPoint, endPoint);
 
 		// 从左上开始顺时针
-		return new int[] { pointOne, pointThree, pointFour, pointThree, pointOne, pointTwo };
+		return new int[] { pointTwo, pointTwo, pointOne, pointThree, pointThree, pointOne };
 	}
 }
