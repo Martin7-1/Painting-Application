@@ -43,6 +43,7 @@ public class MainFrame extends JFrame {
 	 * 鼠标状态
 	 */
 	private JLabel mouseStatusBar;
+
 	private MainFrame() {
 		// private constructor, just for singleton
 		colorPanel = ColorPanel.getInstance();

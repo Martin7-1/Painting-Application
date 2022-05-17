@@ -72,7 +72,6 @@ public class PaintMenu {
 		for (int i = 0; i < menuList.length - 1; i++) {
 			menuBar.add(menuList[i]);
 		}
-		addListener();
 	}
 
 	public void saveFile() {
@@ -152,13 +151,6 @@ public class PaintMenu {
 		helpItemUse.addActionListener(e -> JOptionPane.showMessageDialog(null, getMessage(USER_HELP_INFO), "使用说明", JOptionPane.PLAIN_MESSAGE));
 		menu.add(helpItemUse);
 		menu.add(authorInfo);
-	}
-
-	private void addListener() {
-		// 给文件菜单设置监听
-		// 给设置菜单添加监听
-
-
 	}
 
 	private void addNewListener(JMenuItem fileItemNew) {
