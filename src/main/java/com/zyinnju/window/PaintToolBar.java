@@ -131,9 +131,9 @@ public class PaintToolBar extends JToolBar {
 				for (int j = 0; j < LENGTH; j++) {
 					// 如果按钮被点击。则设置相应的画笔
 					if (e.getSource().equals(contentButtonList[j])) {
-						System.out.println("you choose: " + GlobalStateHandler.getToolTip(j));
+						// System.out.println("you choose: " + GlobalStateHandler.getToolTip(j));
 						GlobalStateHandler.setCurContentType(j);
-						DrawPanel.getInstance().createNewGraphics();
+						// DrawPanel.getInstance().createNewGraphics();
 						repaint();
 					}
 				}

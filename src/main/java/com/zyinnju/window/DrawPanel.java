@@ -24,6 +24,9 @@ import java.util.Objects;
  */
 public class DrawPanel extends JPanel {
 
+	/**
+	 * 绘制内容的列表
+	 */
 	private final List<AbstractContent> contentList;
 
 	private DrawPanel() {
@@ -148,6 +151,11 @@ public class DrawPanel extends JPanel {
 
 	private class MouseMotionListener extends MouseAdapter {
 
+		/**
+		 * 该事件是用于 铅笔 笔刷 橡皮擦使用
+		 *
+		 * @param e Mouse Event
+		 */
 		@Override
 		public void mouseDragged(MouseEvent e) {
 			JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
@@ -163,6 +171,7 @@ public class DrawPanel extends JPanel {
 				((AbstractPaintTool) content).addLength();
 				createNewGraphics();
 			} else {
+				// 除了上述的三种像素级的，其他只需要更新当前左边即可
 				content.setEndPoint(new Point(e.getX(), e.getY()));
 			}
 			repaint();

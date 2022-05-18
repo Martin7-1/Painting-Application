@@ -124,9 +124,7 @@ public class GlobalStateHandler {
 
 	public static void setCurContentType(int index) {
 		String name = TOOL_TIP_LIST[index];
-		System.out.println("type name: " + name);
 		curContentType = ContentType.getContentTypeByValue(name);
-		System.out.println("current content type: " + curContentType.getValue());
 	}
 
 	public static int getResourceSize() {
@@ -182,7 +180,6 @@ public class GlobalStateHandler {
 	}
 
 	public static void setCurColor(Color curColor) {
-		System.out.println("cur color: " + curColor.toString());
 		GlobalStateHandler.curColor = curColor;
 	}
 }
