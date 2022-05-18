@@ -2,6 +2,7 @@ package com.zyinnju.memento;
 
 import com.zyinnju.draw.AbstractContent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
 public class CareTaker {
 
 	private CareTaker() {
-
+		contentList = new ArrayList<>();
 	}
 
 	public static CareTaker getInstance() {
@@ -24,7 +25,7 @@ public class CareTaker {
 	/**
 	 * 存储绘制的图形列表
 	 */
-	private List<Memento> contentList;
+	private final List<Memento> contentList;
 
 	public Memento getMemento(int index) {
 		return contentList.get(index);
@@ -39,6 +40,10 @@ public class CareTaker {
 	}
 
 	public Memento removeMemento(int index) {
-		return contentList.remove(index);
+		if (index >= 0 && index < getListSize()) {
+			return contentList.remove(index);
+		} else {
+			return null;
+		}
 	}
 }

@@ -99,9 +99,12 @@ public class DrawPanel extends JPanel {
 		// 撤销到上一步
 		Originator originator = new Originator();
 		originator.restoreMemento(careTaker.removeMemento(careTaker.getListSize() - 1));
-		System.out.println("remove: " + originator.getContent().getContentType());
-		// 同时移除该类暂存的列表
-		contentList.remove(getContentSize() - 1);
+		System.out.println("remove: " + originator.getContent().toString());
+		// 同时移除该类存内容的列表
+		if (getContentSize() > 0) {
+			contentList.remove(getContentSize() - 1);
+		}
+		repaint();
 	}
 
 	private void draw(Graphics2D g2d, AbstractContent abstractShape) {

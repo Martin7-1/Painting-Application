@@ -43,10 +43,6 @@ public abstract class AbstractContent implements Serializable {
 	 */
 	protected JPanel board;
 	/**
-	 * 图形的类型
-	 */
-	protected ContentType contentType;
-	/**
 	 * 绘制该图形的粗细
 	 */
 	protected Integer thickness;

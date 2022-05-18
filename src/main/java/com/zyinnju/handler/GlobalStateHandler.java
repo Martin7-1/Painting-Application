@@ -124,7 +124,11 @@ public class GlobalStateHandler {
 
 	public static void setCurContentType(int index) {
 		String name = TOOL_TIP_LIST[index];
-		curContentType = ContentType.getContentTypeByValue(name);
+		// 撤销保存不更改内容
+		if (!"撤销".equals(name) && !"保存".equals(name) && !"清空".equals(name)) {
+			System.out.println("you set content type: " + name);
+			curContentType = ContentType.getContentTypeByValue(name);
+		}
 	}
 
 	public static int getResourceSize() {
