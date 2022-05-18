@@ -57,7 +57,7 @@ public class MouseListener extends MouseAdapter {
 		}
 
 		content.setEndPoint(new Point(e.getX(), e.getY()));
-		MainFrame.getInstance().repaint();
+		DrawPanel.getInstance().repaint();
 		DrawPanel.getInstance().createNewGraphics();
 	}
 

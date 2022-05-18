@@ -27,10 +27,6 @@ public class DrawPanel extends JPanel {
 		return InnerClass.INSTANCE;
 	}
 
-	public void createNewGraphics() {
-
-	}
-
 	private static class InnerClass {
 		private static final DrawPanel INSTANCE = new DrawPanel();
 	}
@@ -47,5 +43,9 @@ public class DrawPanel extends JPanel {
 
 	public int getContentSize() {
 		return contentList.size();
+	}
+
+	public void createNewGraphics() {
+		// todo: 创建新的图形
 	}
 }

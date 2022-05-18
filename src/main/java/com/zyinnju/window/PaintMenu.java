@@ -114,7 +114,7 @@ public class PaintMenu {
 		GlobalStateHandler.setCurColor(Color.BLACK);
 		GlobalStateHandler.setThickness("thinnest");
 		DrawPanel.getInstance().createNewGraphics();
-		MainFrame.getInstance().repaint();
+		DrawPanel.getInstance().repaint();
 	}
 
 	public void openFile() {

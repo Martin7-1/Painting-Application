@@ -42,7 +42,7 @@ public class MouseMotionListener extends MouseAdapter {
 		} else {
 			content.setEndPoint(new Point(e.getX(), e.getY()));
 		}
-		MainFrame.getInstance().repaint();
+		DrawPanel.getInstance().repaint();
 	}
 
 	@Override
