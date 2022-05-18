@@ -1,8 +1,7 @@
 package com.zyinnju.draw.tool;
 
 import com.zyinnju.draw.AbstractContent;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -10,6 +9,9 @@ import lombok.experimental.SuperBuilder;
  *
  * @author Zyi
  */
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
@@ -23,4 +25,8 @@ public abstract class AbstractPaintTool extends AbstractContent {
 	 * 画图工具的粗细
 	 */
 	protected Integer thickness;
+
+	public void addLength() {
+		length++;
+	}
 }

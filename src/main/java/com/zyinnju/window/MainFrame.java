@@ -5,6 +5,7 @@ import com.zyinnju.utils.ResourcesPathUtil;
 import com.zyinnju.utils.StyleUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.ToString;
 
 import javax.swing.*;
@@ -45,6 +46,7 @@ public class MainFrame extends JFrame {
 	/**
 	 * 鼠标状态
 	 */
+	@Getter
 	private JLabel mouseStatusBar;
 
 	private MainFrame() {
