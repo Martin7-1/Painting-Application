@@ -61,10 +61,6 @@ public class PaintToolBar extends JToolBar {
 	 * 是否粗体
 	 */
 	private Boolean isBold;
-	/**
-	 * 当前选择的图标 默认为pencil
-	 */
-	private int curChoice = 3;
 
 	private PaintToolBar() {
 		menu = PaintMenu.getInstance();
@@ -136,7 +132,7 @@ public class PaintToolBar extends JToolBar {
 					// 如果按钮被点击。则设置相应的画笔
 					if (e.getSource().equals(contentButtonList[j])) {
 						System.out.println("you choose: " + GlobalStateHandler.getToolTip(j));
-						curChoice = j;
+						GlobalStateHandler.setCurContentType(j);
 						// drawingArea.createNewGraphics();
 						repaint();
 					}

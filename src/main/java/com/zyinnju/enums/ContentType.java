@@ -95,7 +95,7 @@ public enum ContentType implements ValueEnum, Serializable {
 	@Setter
 	private String value;
 
-	public static ContentType getShapeTypeByValue(String value) {
+	public static ContentType getContentTypeByValue(String value) {
 		return SHAPE_MAP.get(value);
 	}
 

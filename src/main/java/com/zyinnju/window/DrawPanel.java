@@ -4,7 +4,9 @@ import com.zyinnju.draw.AbstractContent;
 import com.zyinnju.draw.Point;
 import com.zyinnju.draw.tool.AbstractPaintTool;
 import com.zyinnju.enums.ContentType;
+import com.zyinnju.factory.ContentFactory;
 import com.zyinnju.handler.GlobalStateHandler;
+import com.zyinnju.utils.ResourcesPathUtil;
 import com.zyinnju.utils.StyleUtil;
 
 import javax.swing.*;
@@ -12,6 +14,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 绘画的画布
@@ -19,6 +22,8 @@ import java.util.List;
  * @author Zyi
  */
 public class DrawPanel extends JPanel {
+
+	private List<AbstractContent> contentList;
 
 	private DrawPanel() {
 		setCursor(Cursor.getDefaultCursor());
@@ -30,12 +35,6 @@ public class DrawPanel extends JPanel {
 	public static DrawPanel getInstance() {
 		return InnerClass.INSTANCE;
 	}
-
-	private static class InnerClass {
-		private static final DrawPanel INSTANCE = new DrawPanel();
-	}
-
-	private List<AbstractContent> contentList;
 
 	public AbstractContent getCurContent() {
 		return contentList.get(contentList.size() - 1);
@@ -49,8 +48,45 @@ public class DrawPanel extends JPanel {
 		return contentList.size();
 	}
 
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		// 定义画板
+		Graphics2D g2d = (Graphics2D) g;
+		for (AbstractContent content : contentList) {
+			draw(g2d, content);
+		}
+	}
+
+	void draw(Graphics2D g2d, AbstractContent abstractShape) {
+		// 将画笔传入到各个子类中，用来完成各自的绘图
+		abstractShape.draw(g2d);
+	}
+
 	public void createNewGraphics() {
-		// todo: 创建新的图形
+		ContentType curContentType = GlobalStateHandler.getCurContentType();
+		if (curContentType.equals(ContentType.ERASER)) {
+			// 如果是橡皮的话
+			try {
+				Toolkit tk = Toolkit.getDefaultToolkit();
+				Image image = new ImageIcon(Objects.requireNonNull(getClass().getResource(ResourcesPathUtil.CURSOR))).getImage();
+				Cursor cursor = tk.createCustomCursor(image, new java.awt.Point(10, 10), "norm");
+				setCursor(cursor);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(null, "自定义光标异常");
+			}
+		} else if (curContentType.equals(ContentType.TEXT)) {
+			setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
+		} else {
+			setCursor(Cursor.getDefaultCursor());
+		}
+
+		AbstractContent content = ContentFactory.createContent(curContentType);
+		contentList.add(content);
+	}
+
+	private static class InnerClass {
+		private static final DrawPanel INSTANCE = new DrawPanel();
 	}
 
 	private class MouseListener extends MouseAdapter {

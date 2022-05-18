@@ -114,6 +114,12 @@ public class GlobalStateHandler {
 		GlobalStateHandler.curContentType = curContentType;
 	}
 
+	public static void setCurContentType(int index) {
+		String name = TOOL_TIP_LIST[index];
+		curContentType = ContentType.getContentTypeByValue(name);
+		System.out.println("current content type: " + curContentType.getValue());
+	}
+
 	public static int getResourceSize() {
 		return RESOURCE_LIST.length;
 	}
