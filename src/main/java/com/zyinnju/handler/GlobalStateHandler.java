@@ -63,6 +63,14 @@ public class GlobalStateHandler {
 	 */
 	private static ContentType curContentType;
 	/**
+	 * 当前字体大小
+	 */
+	private static int curFontSize;
+	/**
+	 * 当前字体
+	 */
+	private static String curFont;
+	/**
 	 * 当前颜色
 	 */
 	private static Color curColor = Color.BLACK;
@@ -134,6 +142,22 @@ public class GlobalStateHandler {
 
 	public static String getFontSize(int index) {
 		return FONT_SIZE_LIST[index];
+	}
+
+	public static int getCurFontSize() {
+		return curFontSize;
+	}
+
+	public static void setCurFontSize(int index) {
+		GlobalStateHandler.curFontSize = Integer.parseInt(FONT_SIZE_LIST[index]);
+	}
+
+	public static void setCurFont(int index) {
+		GlobalStateHandler.curFont = FONT_LIST[index];
+	}
+
+	public static String getCurFont() {
+		return curFont;
 	}
 
 	public static String getFont(int index) {

@@ -152,13 +152,13 @@ public class PaintToolBar extends JToolBar {
 		// contentButtonList[2].addActionListener(e -> drawingArea.undo());
 
 		// 添加监听
-		italicButton.addItemListener(e -> isItalic = true);
-		boldButton.addItemListener(e -> isBold = true);
+		italicButton.addItemListener(e -> GlobalStateHandler.setIsItalicType(true));
+		boldButton.addItemListener(e -> GlobalStateHandler.setIsBoldType(true));
 
 		// 设置字体大小
-		fontSizeComboBox.addItemListener(e -> curFontSize = Integer.parseInt(GlobalStateHandler.getFontSize(fontSizeComboBox.getSelectedIndex())));
+		fontSizeComboBox.addItemListener(e -> GlobalStateHandler.setCurFontSize(fontSizeComboBox.getSelectedIndex()));
 		// 设置字体
-		fontComboBox.addItemListener(e -> curFontName = GlobalStateHandler.getFont(fontComboBox.getSelectedIndex()));
+		fontComboBox.addItemListener(e -> GlobalStateHandler.setCurFont(fontComboBox.getSelectedIndex()));
 	}
 
 	private static class InnerClass {

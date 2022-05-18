@@ -20,8 +20,6 @@ import java.io.Serializable;
 @SuperBuilder
 public abstract class AbstractShape extends AbstractContent implements Serializable {
 
-
-
 	@Override
 	public void draw(Graphics2D g) {
 		// 设置颜色
