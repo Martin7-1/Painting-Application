@@ -19,6 +19,8 @@ public class Pencil extends AbstractPaintTool {
 		g.setColor(color);
 		g.setStroke(new BasicStroke(thickness, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g.drawLine(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+		if (startPoint != null && endPoint != null) {
+			g.drawLine(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+		}
 	}
 }

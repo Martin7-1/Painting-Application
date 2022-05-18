@@ -13,6 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,9 +24,10 @@ import java.util.Objects;
  */
 public class DrawPanel extends JPanel {
 
-	private List<AbstractContent> contentList;
+	private final List<AbstractContent> contentList;
 
 	private DrawPanel() {
+		contentList = new ArrayList<>();
 		setCursor(Cursor.getDefaultCursor());
 		setBackground(StyleUtil.DRAW_PANEL_COLOR);
 		addMouseListener(new MouseListener());

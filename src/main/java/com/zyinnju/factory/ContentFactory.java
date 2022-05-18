@@ -88,6 +88,7 @@ public class ContentFactory {
 			default:
 		}
 
+		System.out.println("factory new content type: " + contentType.getValue());
 		return content;
 	}
 }

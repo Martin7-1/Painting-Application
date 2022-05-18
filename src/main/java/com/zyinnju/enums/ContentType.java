@@ -34,23 +34,23 @@ public enum ContentType implements ValueEnum, Serializable {
 	/**
 	 * 空心圆
 	 */
-	CIRCLE("空心圆"),
+	CIRCLE("空心圆形"),
 	/**
 	 * 实心圆
 	 */
-	FILL_CIRCLE("实心圆"),
+	FILL_CIRCLE("填充圆形"),
 	/**
 	 * 实心椭圆
 	 */
-	FILL_OVAL("实心椭圆"),
+	FILL_OVAL("填充椭圆"),
 	/**
 	 * 实心矩形
 	 */
-	FILL_RECT("实心矩形"),
+	FILL_RECT("填充矩形"),
 	/**
 	 * 实心圆角矩形
 	 */
-	FILL_ROUND_RECT("实心圆角矩形"),
+	FILL_ROUND_RECT("填充圆角矩形"),
 	/**
 	 * 六边形
 	 */
@@ -62,7 +62,7 @@ public enum ContentType implements ValueEnum, Serializable {
 	/**
 	 * 椭圆
 	 */
-	OVAL("椭圆"),
+	OVAL("空心椭圆"),
 	/**
 	 * 五边形
 	 */
@@ -74,7 +74,7 @@ public enum ContentType implements ValueEnum, Serializable {
 	/**
 	 * 圆角矩形
 	 */
-	ROUND_RECT("圆角矩形"),
+	ROUND_RECT("空心圆角矩形"),
 	/**
 	 * 三角形
 	 */
@@ -82,7 +82,7 @@ public enum ContentType implements ValueEnum, Serializable {
 	/**
 	 * 文字
 	 */
-	TEXT("文字");
+	TEXT("文本");
 
 	private static Map<String, ContentType> SHAPE_MAP = new HashMap<>();
 

@@ -61,7 +61,7 @@ public class GlobalStateHandler {
 	/**
 	 * 当前选择的内容索引
 	 */
-	private static ContentType curContentType;
+	private static ContentType curContentType = ContentType.PENCIL;
 	/**
 	 * 当前字体大小
 	 */
@@ -124,6 +124,7 @@ public class GlobalStateHandler {
 
 	public static void setCurContentType(int index) {
 		String name = TOOL_TIP_LIST[index];
+		System.out.println("type name: " + name);
 		curContentType = ContentType.getContentTypeByValue(name);
 		System.out.println("current content type: " + curContentType.getValue());
 	}

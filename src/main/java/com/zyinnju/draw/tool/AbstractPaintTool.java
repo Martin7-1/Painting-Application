@@ -20,7 +20,7 @@ public abstract class AbstractPaintTool extends AbstractContent {
 	/**
 	 * 铅笔或橡皮擦的笔迹长度
 	 */
-	protected Integer length;
+	protected int length = 0;
 
 	public void addLength() {
 		length++;

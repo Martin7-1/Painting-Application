@@ -16,7 +16,6 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @SuperBuilder
 public abstract class AbstractShape extends AbstractContent implements Serializable {
 
