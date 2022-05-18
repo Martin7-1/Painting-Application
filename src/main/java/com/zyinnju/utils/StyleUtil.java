@@ -10,4 +10,6 @@ import java.awt.*;
 public class StyleUtil {
 
 	public static final Color BACKGROUND_COLOR = new Color(57, 197, 187);
+
+	public static final Color DRAW_PANEL_COLOR = Color.WHITE;
 }
