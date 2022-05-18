@@ -143,6 +143,7 @@ public class PaintMenu {
 			GlobalStateHandler.setCurContentIndex(0);
 			image = ImageIO.read(file);
 			DrawPanel.getInstance().createNewGraphics();
+			// todo: 保存记录 用于撤销
 			DrawPanel.getInstance().repaint();
 			GlobalStateHandler.setCurContentIndex(3);
 			DrawPanel.getInstance().createNewGraphics();
