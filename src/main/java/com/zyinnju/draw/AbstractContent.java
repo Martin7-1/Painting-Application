@@ -25,11 +25,11 @@ public abstract class AbstractContent implements Serializable {
 	/**
 	 * 绘制内容的起始位置 -- 鼠标一开始点的位置
 	 */
-	protected Point startPoint;
+	protected Point startPoint = new Point(0, 0);
 	/**
 	 * 绘制内容的结束位置 -- 鼠标结束点的位置
 	 */
-	protected Point endPoint;
+	protected Point endPoint = new Point(0, 0);
 	/**
 	 * 绘制内容的颜色
 	 */

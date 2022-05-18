@@ -21,7 +21,7 @@ public class FillCircle extends AbstractShape {
 
 	private void fillCircle(Graphics2D g) {
 		int radius = getRadius();
-		g.drawOval(PointUtil.getMinPointX(startPoint, endPoint),
+		g.fillOval(PointUtil.getMinPointX(startPoint, endPoint),
 			PointUtil.getMinPointY(startPoint, endPoint), radius, radius);
 	}
 

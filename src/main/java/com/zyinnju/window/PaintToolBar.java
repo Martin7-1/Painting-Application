@@ -133,7 +133,7 @@ public class PaintToolBar extends JToolBar {
 					if (e.getSource().equals(contentButtonList[j])) {
 						System.out.println("you choose: " + GlobalStateHandler.getToolTip(j));
 						GlobalStateHandler.setCurContentType(j);
-						// drawingArea.createNewGraphics();
+						DrawPanel.getInstance().createNewGraphics();
 						repaint();
 					}
 				}

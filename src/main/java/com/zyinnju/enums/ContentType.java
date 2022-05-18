@@ -70,7 +70,7 @@ public enum ContentType implements ValueEnum, Serializable {
 	/**
 	 * 矩形
 	 */
-	RECTANGLE("矩形"),
+	RECTANGLE("空心矩形"),
 	/**
 	 * 圆角矩形
 	 */
