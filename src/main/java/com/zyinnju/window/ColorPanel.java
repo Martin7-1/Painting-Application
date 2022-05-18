@@ -30,11 +30,6 @@ public class ColorPanel extends JPanel {
 		new Color(89, 173, 154), new Color(8, 193, 194), new Color(9, 253, 76), new Color(153, 217, 234),
 		new Color(199, 73, 4)};
 	/**
-	 * 记录当前所选择的颜色
-	 */
-	@Getter
-	private Color curColor;
-	/**
 	 * 选择后景颜色的按钮
 	 */
 	private JButton backButton;
@@ -60,7 +55,6 @@ public class ColorPanel extends JPanel {
 		setPreferredSize(new Dimension(60, 60));
 		setLayout(null);
 		setBackground(StyleUtil.BACKGROUND_COLOR);
-		curColor = Color.BLACK;
 
 		initChildPanel();
 		JPanel upPanel = initUpPanel();
@@ -71,10 +65,9 @@ public class ColorPanel extends JPanel {
 	}
 
 	public void chooseColor() {
-		Color color = JColorChooser.showDialog(null, "请选择颜色", curColor);
-		curColor = color;
+		Color color = JColorChooser.showDialog(null, "请选择颜色", GlobalStateHandler.getCurColor());
 		backButton.setBackground(color);
-		GlobalStateHandler.setCurColor(curColor);
+		GlobalStateHandler.setCurColor(color);
 	}
 
 	private void initChildPanel() {
@@ -118,16 +111,16 @@ public class ColorPanel extends JPanel {
 	private void addListener() {
 		backButton.addActionListener(e -> {
 			// 拿到被选中按钮的对象
-			JButton jbt = (JButton) e.getSource();
+			JButton button = (JButton) e.getSource();
 			// 拿到被选中按钮的背景颜色
-			curColor = jbt.getBackground();
+			GlobalStateHandler.setCurColor(button.getBackground());
 
 		});
 		frontButton.addActionListener(e -> {
 			// 拿到被选中按钮的对象
-			JButton jbt = (JButton) e.getSource();
+			JButton button = (JButton) e.getSource();
 			// 拿到被选中按钮的背景颜色
-			curColor = jbt.getBackground();
+			GlobalStateHandler.setCurColor(button.getBackground());
 		});
 	}
 
@@ -154,9 +147,9 @@ public class ColorPanel extends JPanel {
 				// 拿到被选中按钮的对象
 				JButton jbt = (JButton) e.getSource();
 				// 拿到被选中按钮的背景颜色
-				curColor = jbt.getBackground();
+				GlobalStateHandler.setCurColor(jbt.getBackground());
 				// 把左面板中的按钮颜色设置成选中按钮的背景颜色
-				backButton.setBackground(curColor);
+				backButton.setBackground(GlobalStateHandler.getCurColor());
 
 			});
 			downPanel.add(button);

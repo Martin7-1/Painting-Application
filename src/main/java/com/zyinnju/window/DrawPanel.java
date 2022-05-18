@@ -98,6 +98,7 @@ public class DrawPanel extends JPanel {
 
 		@Override
 		public void mousePressed(MouseEvent e) {
+			createNewGraphics();
 			JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
 			mouseStatusBar.setText("point: [" + e.getX() + ", " + e.getY() + "]");
 			AbstractContent content = getCurContent();
@@ -130,7 +131,6 @@ public class DrawPanel extends JPanel {
 
 			content.setEndPoint(new Point(e.getX(), e.getY()));
 			repaint();
-			createNewGraphics();
 		}
 
 		@Override

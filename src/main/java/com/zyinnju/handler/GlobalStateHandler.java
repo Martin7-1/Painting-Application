@@ -182,6 +182,7 @@ public class GlobalStateHandler {
 	}
 
 	public static void setCurColor(Color curColor) {
+		System.out.println("cur color: " + curColor.toString());
 		GlobalStateHandler.curColor = curColor;
 	}
 }
