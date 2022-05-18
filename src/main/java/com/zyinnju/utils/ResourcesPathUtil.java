@@ -16,8 +16,9 @@ public class ResourcesPathUtil {
 	public static final String OPEN = ROOT_PATH + "open.png";
 	public static final String REFRESH = ROOT_PATH + "refresh.png";
 	public static final String SAVE = ROOT_PATH + "save.png";
-	public static final String BRUSH = ROOT_PATH + "brush.png";
+	public static final String MOUSE = ROOT_PATH + "mouse.png";
 
+	public static final String BRUSH = ROOT_PATH + "brush.png";
 	public static final String ERASER = ROOT_PATH + "eraser.png";
 	public static final String FONT = ROOT_PATH + "font.png";
 	public static final String PENCIL = ROOT_PATH + "pencil.png";

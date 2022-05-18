@@ -110,7 +110,7 @@ public class PaintToolBar extends JToolBar {
 
 	private void addListener() {
 		// 设置监听事件
-		for (int i = 3; i < LENGTH; i++) {
+		for (int i = 4; i < LENGTH; i++) {
 			int finalI = i;
 			contentButtonList[i].addActionListener(e -> {
 				// System.out.println("you choose: " + GlobalStateHandler.getToolTip(j));
@@ -119,15 +119,18 @@ public class PaintToolBar extends JToolBar {
 			});
 		}
 
+		// todo: 点击选择图形进行复制等
+		// contentButtonList[0].addActionListener();
+
 		// 保存操作
-		contentButtonList[0].addActionListener(e -> {
+		contentButtonList[1].addActionListener(e -> {
 			menu.saveFile();
 			GlobalStateHandler.setIsSaved(true);
 		});
 		// 创建新文件操作
-		contentButtonList[1].addActionListener(e -> menu.createNewFile());
+		contentButtonList[2].addActionListener(e -> menu.createNewFile());
 		// 撤销操作
-		contentButtonList[2].addActionListener(e -> DrawPanel.getInstance().undo());
+		contentButtonList[3].addActionListener(e -> DrawPanel.getInstance().undo());
 
 		// 添加监听
 		italicButton.addItemListener(e -> GlobalStateHandler.setIsItalicType(true));
