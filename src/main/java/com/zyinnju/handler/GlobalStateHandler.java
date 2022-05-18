@@ -8,6 +8,9 @@ import static com.zyinnju.utils.ResourcesPathUtil.*;
 
 /**
  * 用来记录画图工具中一些公共的状态
+ * 有点类似观察者模式
+ * 只是Handler没有办法去通知观察者状态的改变
+ * 而是观察者每次需要状态需要自己来请求Handler
  *
  * @author Zyi
  */

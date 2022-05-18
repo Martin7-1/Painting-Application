@@ -2,15 +2,15 @@ package com.zyinnju.window;
 
 import com.zyinnju.handler.GlobalStateHandler;
 import com.zyinnju.utils.ResourcesPathUtil;
+import com.zyinnju.utils.filter.JPGFilter;
 import lombok.Getter;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -75,7 +75,33 @@ public class PaintMenu {
 	}
 
 	public void saveFile() {
-		// todo
+		// swing自带的文件选择器
+		JFileChooser fileChooser = getFileChooser();
+		int result = fileChooser.showSaveDialog(MainFrame.getInstance());
+		if (result == JFileChooser.CANCEL_OPTION) {
+			// 如果取消了
+			return;
+		}
+
+		File file = fileChooser.getSelectedFile();
+		if (!file.getName().endsWith(fileChooser.getFileFilter().getDescription())) {
+			// 判断是否后缀和选择的类型相同
+			String fileName = file.getPath() + fileChooser.getFileFilter().getDescription();
+			file = new File(fileName);
+		}
+		if (!file.canWrite()) {
+			JOptionPane.showMessageDialog(fileChooser, "该文件不可写", "该文件不可写", JOptionPane.ERROR_MESSAGE);
+		}
+		if ("".equals(file.getName())) {
+			JOptionPane.showMessageDialog(fileChooser, "无效的文件名", "无效的文件名", JOptionPane.ERROR_MESSAGE);
+		}
+
+		BufferedImage image = createImage(DrawPanel.getInstance());
+		try {
+			ImageIO.write(image, "png", file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void createNewFile() {
@@ -84,6 +110,30 @@ public class PaintMenu {
 
 	public void openFile() {
 		// todo
+	}
+
+	private JFileChooser getFileChooser() {
+		JFileChooser fileChooser = new JFileChooser();
+		// 设置文件显示类型为仅显示文件
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+		// 文件过滤器
+		JPGFilter jpg = new JPGFilter();
+		BmpFilter bmp = new BmpFilter();
+		PngFilter png = new PngFilter();
+		GifFilter gif = new GifFilter();
+		// 向用户可选择的文件过滤器列表添加一个过滤器。
+		fileChooser.addChoosableFileFilter(jpg);
+		fileChooser.addChoosableFileFilter(bmp);
+		fileChooser.addChoosableFileFilter(png);
+		fileChooser.addChoosableFileFilter(gif);
+		// 返回当前的文本过滤器，并设置成当前的选择
+		fileChooser.setFileFilter(fileChooser.getFileFilter());
+		return fileChooser;
+		return null;
+	}
+
+	private BufferedImage createImage(DrawPanel drawPanel) {
+		return null;
 	}
 
 	private String getMessage(String path) {
