@@ -46,6 +46,10 @@ public abstract class AbstractContent implements Serializable {
 	 * 图形的类型
 	 */
 	protected ContentType contentType;
+	/**
+	 * 绘制该图形的粗细
+	 */
+	protected Integer thickness;
 
 	/**
 	 * 绘制内容方法

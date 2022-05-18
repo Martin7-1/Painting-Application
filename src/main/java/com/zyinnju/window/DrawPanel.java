@@ -65,6 +65,7 @@ public class DrawPanel extends JPanel {
 
 	public void createNewGraphics() {
 		ContentType curContentType = GlobalStateHandler.getCurContentType();
+		// 设置光标
 		if (curContentType.equals(ContentType.ERASER)) {
 			// 如果是橡皮的话
 			try {
@@ -83,6 +84,8 @@ public class DrawPanel extends JPanel {
 
 		AbstractContent content = ContentFactory.createContent(curContentType);
 		contentList.add(content);
+		content.setColor(GlobalStateHandler.getCurColor());
+		content.setThickness(GlobalStateHandler.getThickness());
 	}
 
 	private static class InnerClass {

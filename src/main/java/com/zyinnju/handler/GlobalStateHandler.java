@@ -153,7 +153,7 @@ public class GlobalStateHandler {
 	}
 
 	public static Color getCurColor() {
-		return curColor;
+		return curColor == null ? Color.BLACK : curColor;
 	}
 
 	public static void setCurColor(Color curColor) {

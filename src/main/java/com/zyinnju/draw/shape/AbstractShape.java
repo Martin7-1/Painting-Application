@@ -20,10 +20,7 @@ import java.io.Serializable;
 @SuperBuilder
 public abstract class AbstractShape extends AbstractContent implements Serializable {
 
-	/**
-	 * 绘制该图形的粗细
-	 */
-	protected Integer thickness;
+
 
 	@Override
 	public void draw(Graphics2D g) {
