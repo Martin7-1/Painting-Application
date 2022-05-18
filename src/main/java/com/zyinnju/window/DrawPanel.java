@@ -99,7 +99,6 @@ public class DrawPanel extends JPanel {
 		// 撤销到上一步
 		Originator originator = new Originator();
 		originator.restoreMemento(careTaker.removeMemento(careTaker.getListSize() - 1));
-		System.out.println("remove: " + originator.getContent().toString());
 		// 同时移除该类存内容的列表
 		if (getContentSize() > 0) {
 			contentList.remove(getContentSize() - 1);

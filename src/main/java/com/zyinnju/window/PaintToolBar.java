@@ -110,17 +110,12 @@ public class PaintToolBar extends JToolBar {
 
 	private void addListener() {
 		// 设置监听事件
-		for (int i = 2; i < LENGTH; i++) {
+		for (int i = 3; i < LENGTH; i++) {
+			int finalI = i;
 			contentButtonList[i].addActionListener(e -> {
-				for (int j = 0; j < LENGTH; j++) {
-					// 如果按钮被点击。则设置相应的画笔
-					if (e.getSource().equals(contentButtonList[j])) {
-						// System.out.println("you choose: " + GlobalStateHandler.getToolTip(j));
-						GlobalStateHandler.setCurContentType(j);
-						repaint();
-					}
-				}
-
+				// System.out.println("you choose: " + GlobalStateHandler.getToolTip(j));
+				GlobalStateHandler.setCurContentType(finalI);
+				repaint();
 			});
 		}
 

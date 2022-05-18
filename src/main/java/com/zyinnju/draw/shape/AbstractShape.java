@@ -1,7 +1,10 @@
 package com.zyinnju.draw.shape;
 
 import com.zyinnju.draw.AbstractContent;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import java.awt.*;

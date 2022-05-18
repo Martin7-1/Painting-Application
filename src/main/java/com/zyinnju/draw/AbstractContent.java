@@ -1,6 +1,5 @@
 package com.zyinnju.draw;
 
-import com.zyinnju.enums.ContentType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,7 +44,7 @@ public abstract class AbstractContent implements Serializable {
 	/**
 	 * 绘制该图形的粗细
 	 */
-	protected Integer thickness;
+	protected int thickness;
 
 	/**
 	 * 绘制内容方法

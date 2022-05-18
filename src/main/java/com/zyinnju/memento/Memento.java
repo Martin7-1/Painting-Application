@@ -1,8 +1,6 @@
 package com.zyinnju.memento;
 
 import com.zyinnju.draw.AbstractContent;
-import lombok.Data;
-import lombok.Getter;
 
 /**
  * @author Zyi

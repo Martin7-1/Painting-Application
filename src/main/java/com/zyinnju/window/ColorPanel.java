@@ -3,7 +3,6 @@ package com.zyinnju.window;
 import com.zyinnju.handler.GlobalStateHandler;
 import com.zyinnju.utils.ResourcesPathUtil;
 import com.zyinnju.utils.StyleUtil;
-import lombok.Getter;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;

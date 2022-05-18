@@ -31,9 +31,11 @@ public class Pentagon extends AbstractShape {
 		int xGap = Math.abs(startPoint.getX() - endPoint.getX());
 		// 中点
 		int pointOne = PointUtil.getMinPointX(startPoint, endPoint) + xGap / 2;
+		double tan = Math.tan((54 * 2 * Math.PI) / 360);
+		double width = xGap / (2 * tan);
 		int pointTwo = PointUtil.getMaxPointX(startPoint, endPoint);
-		int pointThree = PointUtil.getMaxPointY(startPoint, endPoint) - (int) (xGap / (2 * Math.sqrt(3)));
-		int pointFour = PointUtil.getMinPointX(startPoint, endPoint) + (int) (xGap / (2 * Math.sqrt(3)));
+		int pointThree = PointUtil.getMaxPointX(startPoint, endPoint) - (int) ((xGap - width) / 2);
+		int pointFour = PointUtil.getMinPointX(startPoint, endPoint) + (int) ((xGap - width) / 2);
 		int pointFive = PointUtil.getMinPointX(startPoint, endPoint);
 
 		return new int[]{pointOne, pointTwo, pointThree, pointFour, pointFive};
@@ -41,9 +43,14 @@ public class Pentagon extends AbstractShape {
 
 	private int[] getPointsY() {
 		int yGap = Math.abs(startPoint.getY() - endPoint.getY());
+		int xGap = Math.abs(startPoint.getX() - endPoint.getX());
 		// 中点
 		int pointOne = PointUtil.getMinPointY(startPoint, endPoint);
-		int pointTwo = PointUtil.getMinPointY(startPoint, endPoint) + (int) (yGap / 2 * Math.sqrt(3));
+		double tan = Math.tan((54 * 2 * Math.PI) / 360);
+		double width = xGap / (2 * tan);
+		double cos = Math.cos((54 * 2 * Math.PI) / 360);
+		double offset = width * cos;
+		int pointTwo = PointUtil.getMinPointY(startPoint, endPoint) + (int) offset;
 		int pointThree = PointUtil.getMaxPointY(startPoint, endPoint);
 
 		return new int[]{pointOne, pointTwo, pointThree, pointThree, pointTwo};

@@ -1,7 +1,5 @@
 package com.zyinnju.memento;
 
-import com.zyinnju.draw.AbstractContent;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +8,11 @@ import java.util.List;
  */
 public class CareTaker {
 
+	/**
+	 * 存储绘制的图形列表
+	 */
+	private final List<Memento> contentList;
+
 	private CareTaker() {
 		contentList = new ArrayList<>();
 	}
@@ -17,15 +20,6 @@ public class CareTaker {
 	public static CareTaker getInstance() {
 		return InnerClass.INSTANCE;
 	}
-
-	private static class InnerClass {
-		private static final CareTaker INSTANCE = new CareTaker();
-	}
-
-	/**
-	 * 存储绘制的图形列表
-	 */
-	private final List<Memento> contentList;
 
 	public Memento getMemento(int index) {
 		return contentList.get(index);
@@ -45,5 +39,9 @@ public class CareTaker {
 		} else {
 			return null;
 		}
+	}
+
+	private static class InnerClass {
+		private static final CareTaker INSTANCE = new CareTaker();
 	}
 }

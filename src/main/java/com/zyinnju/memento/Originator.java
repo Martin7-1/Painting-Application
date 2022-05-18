@@ -26,6 +26,8 @@ public class Originator {
 	}
 
 	public void restoreMemento(Memento memento) {
-		content = memento.getContent();
+		if (memento != null) {
+			content = memento.getContent();
+		}
 	}
 }
