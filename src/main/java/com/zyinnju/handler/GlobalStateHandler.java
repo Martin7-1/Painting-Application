@@ -152,12 +152,12 @@ public class GlobalStateHandler {
 		GlobalStateHandler.curFontSize = Integer.parseInt(FONT_SIZE_LIST[index]);
 	}
 
-	public static void setCurFont(int index) {
-		GlobalStateHandler.curFont = FONT_LIST[index];
-	}
-
 	public static String getCurFont() {
 		return curFont;
+	}
+
+	public static void setCurFont(int index) {
+		GlobalStateHandler.curFont = FONT_LIST[index];
 	}
 
 	public static String getFont(int index) {

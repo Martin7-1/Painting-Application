@@ -62,8 +62,8 @@ public class ContentFactory {
 				content = new FillRoundRect();
 				break;
 			case TRIANGLE:
-				 content = new Triangle();
-				 break;
+				content = new Triangle();
+				break;
 			case PENTAGON:
 				content = new Pentagon();
 				break;
