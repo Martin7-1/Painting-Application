@@ -1,7 +1,6 @@
 package com.zyinnju.draw.shape;
 
 import com.zyinnju.draw.AbstractContent;
-import com.zyinnju.enums.ShapeType;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -25,10 +24,6 @@ public abstract class AbstractShape extends AbstractContent implements Serializa
 	 * 绘制该图形的粗细
 	 */
 	protected Integer thickness;
-	/**
-	 * 图形的类型
-	 */
-	protected ShapeType shapeType;
 
 	@Override
 	public void draw(Graphics2D g) {

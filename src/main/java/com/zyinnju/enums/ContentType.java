@@ -13,8 +13,24 @@ import java.util.Map;
  */
 @NoArgsConstructor
 @AllArgsConstructor
-public enum ShapeType implements ValueEnum, Serializable {
+public enum ContentType implements ValueEnum, Serializable {
 
+	/**
+	 * 图片
+	 */
+	IMAGE("图片"),
+	/**
+	 * 铅笔
+	 */
+	PENCIL("铅笔"),
+	/**
+	 * 笔刷
+	 */
+	BRUSH("笔刷"),
+	/**
+	 * 橡皮
+	 */
+	ERASER("橡皮"),
 	/**
 	 * 空心圆
 	 */
@@ -64,22 +80,22 @@ public enum ShapeType implements ValueEnum, Serializable {
 	 */
 	TRIANGLE("三角形"),
 	/**
-	 * 图片
+	 * 文字
 	 */
-	IMAGE("图片");
+	TEXT("文字");
 
-	private static Map<String, ShapeType> SHAPE_MAP = new HashMap<>();
+	private static Map<String, ContentType> SHAPE_MAP = new HashMap<>();
 
 	static {
-		for (ShapeType shapeType : ShapeType.values()) {
-			SHAPE_MAP.put(shapeType.getValue(), shapeType);
+		for (ContentType contentType : ContentType.values()) {
+			SHAPE_MAP.put(contentType.getValue(), contentType);
 		}
 	}
 
 	@Setter
 	private String value;
 
-	public static ShapeType getShapeTypeByValue(String value) {
+	public static ContentType getShapeTypeByValue(String value) {
 		return SHAPE_MAP.get(value);
 	}
 

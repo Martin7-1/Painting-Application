@@ -1,5 +1,7 @@
 package com.zyinnju.handler;
 
+import com.zyinnju.enums.ContentType;
+
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,12 +42,6 @@ public class GlobalStateHandler {
 	 * 画笔粗细map
 	 */
 	private static final Map<String, Integer> STROKE_MAP = new HashMap<>();
-	static {
-		STROKE_MAP.put("thinnest", 1);
-		STROKE_MAP.put("thinner", 5);
-		STROKE_MAP.put("thicker", 15);
-		STROKE_MAP.put("thickest", 25);
-	}
 	/**
 	 * 是否保存
 	 */
@@ -65,11 +61,18 @@ public class GlobalStateHandler {
 	/**
 	 * 当前选择的内容索引
 	 */
-	private static int curContentIndex = 3;
+	private static ContentType curContentType;
 	/**
 	 * 当前颜色
 	 */
 	private static Color curColor = Color.BLACK;
+
+	static {
+		STROKE_MAP.put("thinnest", 1);
+		STROKE_MAP.put("thinner", 5);
+		STROKE_MAP.put("thicker", 15);
+		STROKE_MAP.put("thickest", 25);
+	}
 
 	public static boolean isSaved() {
 		return isSaved;
@@ -103,12 +106,12 @@ public class GlobalStateHandler {
 		GlobalStateHandler.isItalicType = isItalicType;
 	}
 
-	public static int getCurContentIndex() {
-		return curContentIndex;
+	public static ContentType getCurContentType() {
+		return curContentType;
 	}
 
-	public static void setCurContentIndex(int curContentIndex) {
-		GlobalStateHandler.curContentIndex = curContentIndex;
+	public static void setCurContentType(ContentType curContentType) {
+		GlobalStateHandler.curContentType = curContentType;
 	}
 
 	public static int getResourceSize() {

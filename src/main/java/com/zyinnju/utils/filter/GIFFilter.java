@@ -6,7 +6,7 @@ import java.io.File;
 /**
  * @author Zyi
  */
-public class GIFFilter extends FileFilter  {
+public class GIFFilter extends FileFilter {
 
 	private static final String POSTFIX = ".gif";
 

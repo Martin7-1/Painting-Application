@@ -1,5 +1,6 @@
 package com.zyinnju.draw;
 
+import com.zyinnju.enums.ContentType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,6 +42,10 @@ public abstract class AbstractContent implements Serializable {
 	 * 绘画的面板
 	 */
 	protected JPanel board;
+	/**
+	 * 图形的类型
+	 */
+	protected ContentType contentType;
 
 	/**
 	 * 绘制内容方法

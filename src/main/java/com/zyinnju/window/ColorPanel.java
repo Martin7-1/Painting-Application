@@ -46,6 +46,7 @@ public class ColorPanel extends JPanel {
 	 * 选择颜色的面板
 	 */
 	private JPanel childPanel;
+
 	private ColorPanel() {
 		initColorPanel();
 	}

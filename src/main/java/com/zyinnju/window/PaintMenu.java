@@ -1,5 +1,6 @@
 package com.zyinnju.window;
 
+import com.zyinnju.enums.ContentType;
 import com.zyinnju.handler.GlobalStateHandler;
 import com.zyinnju.utils.ResourcesPathUtil;
 import com.zyinnju.utils.filter.BMPFilter;
@@ -27,6 +28,15 @@ import java.util.Objects;
 public class PaintMenu {
 
 	/**
+	 * 文件路径 todo: 替换为File.Separator
+	 */
+	private static final String AUTHOR_INFO = "src/main/resources/msg/AuthorInfo.txt";
+	private static final String USER_HELP_INFO = "src/main/resources/msg/HelpInfo.txt";
+	/**
+	 * 颜色栏
+	 */
+	private final ColorPanel colorPanel;
+	/**
 	 * 菜单栏
 	 */
 	@Getter
@@ -39,15 +49,6 @@ public class PaintMenu {
 	 * 菜单栏的分类按钮
 	 */
 	private JMenu[] menuList;
-	/**
-	 * 颜色栏
-	 */
-	private final ColorPanel colorPanel;
-	/**
-	 * 文件路径 todo: 替换为File.Separator
-	 */
-	private static final String AUTHOR_INFO = "src/main/resources/msg/AuthorInfo.txt";
-	private static final String USER_HELP_INFO = "src/main/resources/msg/HelpInfo.txt";
 
 	private PaintMenu() {
 		colorPanel = ColorPanel.getInstance();
@@ -109,7 +110,7 @@ public class PaintMenu {
 	}
 
 	public void createNewFile() {
-		GlobalStateHandler.setCurContentIndex(0);
+		GlobalStateHandler.setCurContentType(ContentType.IMAGE);
 		GlobalStateHandler.setCurColor(Color.BLACK);
 		GlobalStateHandler.setThickness("thinnest");
 		DrawPanel.getInstance().createNewGraphics();
@@ -140,12 +141,12 @@ public class PaintMenu {
 		BufferedImage image;
 
 		try {
-			GlobalStateHandler.setCurContentIndex(0);
+			GlobalStateHandler.setCurContentType(ContentType.IMAGE);
 			image = ImageIO.read(file);
 			DrawPanel.getInstance().createNewGraphics();
 			// todo: 保存记录 用于撤销
 			DrawPanel.getInstance().repaint();
-			GlobalStateHandler.setCurContentIndex(3);
+			GlobalStateHandler.setCurContentType(ContentType.PENCIL);
 			DrawPanel.getInstance().createNewGraphics();
 		} catch (IOException e) {
 			e.printStackTrace();

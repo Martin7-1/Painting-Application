@@ -18,6 +18,10 @@ public class PaintToolBar extends JToolBar {
 
 	private static final int LENGTH = GlobalStateHandler.getResourceSize();
 	/**
+	 * 菜单栏
+	 */
+	private final PaintMenu menu;
+	/**
 	 * 各种图形的选择按钮
 	 */
 	private JButton[] contentButtonList;
@@ -61,10 +65,6 @@ public class PaintToolBar extends JToolBar {
 	 * 当前选择的图标 默认为pencil
 	 */
 	private int curChoice = 3;
-	/**
-	 * 菜单栏
-	 */
-	private final PaintMenu menu;
 
 	private PaintToolBar() {
 		menu = PaintMenu.getInstance();

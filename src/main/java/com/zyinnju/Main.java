@@ -3,6 +3,8 @@ package com.zyinnju;
 import com.zyinnju.window.MainFrame;
 
 /**
+ * 画图工具的入口
+ *
  * @author Zyi
  */
 public class Main {
