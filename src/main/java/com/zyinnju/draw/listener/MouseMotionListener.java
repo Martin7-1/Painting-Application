@@ -27,47 +27,26 @@ public class MouseMotionListener extends MouseAdapter {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		mouseStatusBar.setText("point: [" + e.getX() + ", " + e.getY() + "]");
+	public void mouseDragged(MouseEvent e) {
+		mouseStatusBar.setText("point :[" + e.getX() + ", " + e.getY() + "]");
 		AbstractContent content = DrawPanel.getInstance().getCurContent();
-		content.setStartPoint(new Point(e.getX(), e.getY()));
-		content.setEndPoint(new Point(e.getX(), e.getY()));
-
-		// 如果当前选择的图形是画笔或者橡皮檫，则进行下面的操作
+		AbstractContent lastContent = DrawPanel.getInstance().getContent(DrawPanel.getInstance().getContentSize() - 1);
 		ContentType curContentType = GlobalStateHandler.getCurContentType();
 
 		if (curContentType.equals(ContentType.ERASER) || curContentType.equals(ContentType.PENCIL) || curContentType.equals(ContentType.BRUSH)) {
-			((AbstractPaintTool) content).setLength(0);
+			lastContent.setStartPoint(new Point(e.getX(), e.getY()));
 			content.setStartPoint(new Point(e.getX(), e.getY()));
 			content.setEndPoint(new Point(e.getX(), e.getY()));
 			((AbstractPaintTool) content).addLength();
 			DrawPanel.getInstance().createNewGraphics();
+		} else {
+			content.setEndPoint(new Point(e.getX(), e.getY()));
 		}
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		mouseStatusBar.setText("point: [" + e.getX() + ", " + e.getY() + "]");
-		ContentType curContentType = GlobalStateHandler.getCurContentType();
-		AbstractContent content = DrawPanel.getInstance().getCurContent();
-		if (curContentType.equals(ContentType.ERASER) || curContentType.equals(ContentType.PENCIL) || curContentType.equals(ContentType.BRUSH)) {
-			content.setStartPoint(new Point(e.getX(), e.getY()));
-			((AbstractPaintTool) content).addLength();
-			DrawPanel.getInstance().createNewGraphics();
-		}
-
-		content.setEndPoint(new Point(e.getX(), e.getY()));
 		MainFrame.getInstance().repaint();
-		DrawPanel.getInstance().createNewGraphics();
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		mouseStatusBar.setText("point: [" + e.getX() + "," + e.getY() + "]");
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		mouseStatusBar.setText("point：");
+	public void mouseMoved(MouseEvent e) {
+		mouseStatusBar.setText("point :[" + e.getX() + ", " + e.getY() + "]");
 	}
 }

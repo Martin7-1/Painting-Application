@@ -41,6 +41,10 @@ public class DrawPanel extends JPanel {
 		return contentList.get(contentList.size() - 1);
 	}
 
+	public AbstractContent getContent(int index) {
+		return contentList.get(index);
+	}
+
 	public int getContentSize() {
 		return contentList.size();
 	}
