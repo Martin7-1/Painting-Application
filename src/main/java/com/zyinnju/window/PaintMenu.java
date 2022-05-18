@@ -2,11 +2,15 @@ package com.zyinnju.window;
 
 import com.zyinnju.handler.GlobalStateHandler;
 import com.zyinnju.utils.ResourcesPathUtil;
+import com.zyinnju.utils.filter.BMPFilter;
+import com.zyinnju.utils.filter.GIFFilter;
 import com.zyinnju.utils.filter.JPGFilter;
+import com.zyinnju.utils.filter.PNGFilter;
 import lombok.Getter;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -117,23 +121,32 @@ public class PaintMenu {
 		// 设置文件显示类型为仅显示文件
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		// 文件过滤器
-		JPGFilter jpg = new JPGFilter();
-		BmpFilter bmp = new BmpFilter();
-		PngFilter png = new PngFilter();
-		GifFilter gif = new GifFilter();
+		JPGFilter jpgFilter = new JPGFilter();
+		BMPFilter bmpFilter = new BMPFilter();
+		PNGFilter pngFilter = new PNGFilter();
+		GIFFilter gifFilter = new GIFFilter();
 		// 向用户可选择的文件过滤器列表添加一个过滤器。
-		fileChooser.addChoosableFileFilter(jpg);
-		fileChooser.addChoosableFileFilter(bmp);
-		fileChooser.addChoosableFileFilter(png);
-		fileChooser.addChoosableFileFilter(gif);
+		fileChooser.addChoosableFileFilter(jpgFilter);
+		fileChooser.addChoosableFileFilter(bmpFilter);
+		fileChooser.addChoosableFileFilter(pngFilter);
+		fileChooser.addChoosableFileFilter(gifFilter);
 		// 返回当前的文本过滤器，并设置成当前的选择
 		fileChooser.setFileFilter(fileChooser.getFileFilter());
 		return fileChooser;
-		return null;
 	}
 
 	private BufferedImage createImage(DrawPanel drawPanel) {
-		return null;
+		int width = MainFrame.getInstance().getWidth();
+		int height = MainFrame.getInstance().getHeight();
+		BufferedImage panelImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		Graphics2D graphics = panelImage.createGraphics();
+
+		graphics.setColor(Color.WHITE);
+		graphics.fillRect(0, 0, width, height);
+		graphics.translate(0, 0);
+		drawPanel.paint(graphics);
+		graphics.dispose();
+		return panelImage;
 	}
 
 	private String getMessage(String path) {
