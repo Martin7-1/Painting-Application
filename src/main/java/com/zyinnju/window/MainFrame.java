@@ -23,6 +23,9 @@ import java.util.Objects;
 @Data
 public class MainFrame extends JFrame {
 
+	private static final int WIDTH = 950;
+	private static final int HEIGHT = 600;
+
 	/**
 	 * 颜色选择的面板
 	 */
@@ -61,7 +64,7 @@ public class MainFrame extends JFrame {
 		// 设置标题
 		setTitle(title);
 		// 设置窗口大小
-		setSize(950, 600);
+		setSize(WIDTH, HEIGHT);
 		// 居中显示
 		setLocationRelativeTo(null);
 		add(colorPanel, BorderLayout.WEST);
@@ -79,7 +82,7 @@ public class MainFrame extends JFrame {
 		// 设置该组件为透明
 		mouseStatusBar.setOpaque(true);
 		mouseStatusBar.setBackground(StyleUtil.BACKGROUND_COLOR);
-		// drawPanel.createNewGraphics();
+		drawPanel.createNewGraphics();
 
 		addClosingEvent();
 	}

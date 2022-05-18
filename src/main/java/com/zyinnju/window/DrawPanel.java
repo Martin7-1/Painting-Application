@@ -17,6 +17,10 @@ public class DrawPanel extends JPanel {
 		return InnerClass.INSTANCE;
 	}
 
+	public void createNewGraphics() {
+
+	}
+
 	private static class InnerClass {
 		private static final DrawPanel INSTANCE = new DrawPanel();
 	}

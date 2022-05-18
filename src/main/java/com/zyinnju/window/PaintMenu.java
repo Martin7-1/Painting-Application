@@ -109,11 +109,46 @@ public class PaintMenu {
 	}
 
 	public void createNewFile() {
-		// todo
+		GlobalStateHandler.setCurContentIndex(0);
+		GlobalStateHandler.setCurColor(Color.BLACK);
+		GlobalStateHandler.setThickness("thinnest");
+		DrawPanel.getInstance().createNewGraphics();
+		MainFrame.getInstance().repaint();
 	}
 
 	public void openFile() {
-		// todo
+		JFileChooser fileChooser = getFileChooser();
+		// 弹出一个 "Open File" 文件选择器对话框
+		int result = fileChooser.showOpenDialog(MainFrame.getInstance());
+		if (result == JFileChooser.CANCEL_OPTION) {
+			return;
+		}
+		// 得到选择文件的名字
+		File file = fileChooser.getSelectedFile();
+		if (!file.getName().endsWith(fileChooser.getFileFilter().getDescription())) {
+			JOptionPane.showMessageDialog(MainFrame.getInstance(), "文件格式错误！");
+			return;
+		}
+		if (!file.canWrite()) {
+			JOptionPane.showMessageDialog(fileChooser, "该文件不可写", "该文件不可写", JOptionPane.ERROR_MESSAGE);
+		}
+
+		if ("".equals(file.getName())) {
+			JOptionPane.showMessageDialog(fileChooser, "无效的文件名", "无效的文件名", JOptionPane.ERROR_MESSAGE);
+		}
+
+		BufferedImage image;
+
+		try {
+			GlobalStateHandler.setCurContentIndex(0);
+			image = ImageIO.read(file);
+			DrawPanel.getInstance().createNewGraphics();
+			DrawPanel.getInstance().repaint();
+			GlobalStateHandler.setCurContentIndex(3);
+			DrawPanel.getInstance().createNewGraphics();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private JFileChooser getFileChooser() {
