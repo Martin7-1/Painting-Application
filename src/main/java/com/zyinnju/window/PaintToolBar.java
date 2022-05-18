@@ -38,14 +38,6 @@ public class PaintToolBar extends JToolBar {
 	 */
 	private ImageIcon[] imageIconList;
 	/**
-	 * 当前字体大小
-	 */
-	private int curFontSize;
-	/**
-	 * 当前字体名字
-	 */
-	private String curFontName;
-	/**
 	 * 是否粗体勾选框
 	 */
 	private Checkbox boldButton;
@@ -53,14 +45,6 @@ public class PaintToolBar extends JToolBar {
 	 * 是否斜体勾选框
 	 */
 	private Checkbox italicButton;
-	/**
-	 * 是否斜体
-	 */
-	private Boolean isItalic;
-	/**
-	 * 是否粗体
-	 */
-	private Boolean isBold;
 
 	private PaintToolBar() {
 		menu = PaintMenu.getInstance();
@@ -133,7 +117,6 @@ public class PaintToolBar extends JToolBar {
 					if (e.getSource().equals(contentButtonList[j])) {
 						// System.out.println("you choose: " + GlobalStateHandler.getToolTip(j));
 						GlobalStateHandler.setCurContentType(j);
-						// DrawPanel.getInstance().createNewGraphics();
 						repaint();
 					}
 				}
@@ -149,7 +132,7 @@ public class PaintToolBar extends JToolBar {
 		// 创建新文件操作
 		contentButtonList[1].addActionListener(e -> menu.createNewFile());
 		// 撤销操作
-		// contentButtonList[2].addActionListener(e -> drawingArea.undo());
+		contentButtonList[2].addActionListener(e -> DrawPanel.getInstance().undo());
 
 		// 添加监听
 		italicButton.addItemListener(e -> GlobalStateHandler.setIsItalicType(true));

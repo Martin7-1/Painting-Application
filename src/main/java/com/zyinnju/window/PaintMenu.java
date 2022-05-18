@@ -297,11 +297,7 @@ public class PaintMenu {
 	}
 
 	private void addUndoListener(JMenuItem setItemUndo) {
-		setItemUndo.addActionListener(e -> {
-			// 撤销
-//			drawingArea.undo();
-			// todo: 备忘录模式实现撤销
-		});
+		setItemUndo.addActionListener(e -> DrawPanel.getInstance().undo());
 	}
 
 	private void addStrokeListener(JMenu strokeMenu) {

@@ -6,6 +6,8 @@ import com.zyinnju.draw.tool.AbstractPaintTool;
 import com.zyinnju.enums.ContentType;
 import com.zyinnju.factory.ContentFactory;
 import com.zyinnju.handler.GlobalStateHandler;
+import com.zyinnju.memento.CareTaker;
+import com.zyinnju.memento.Originator;
 import com.zyinnju.utils.ResourcesPathUtil;
 import com.zyinnju.utils.StyleUtil;
 
@@ -28,9 +30,11 @@ public class DrawPanel extends JPanel {
 	 * 绘制内容的列表
 	 */
 	private final List<AbstractContent> contentList;
+	private final CareTaker careTaker;
 
 	private DrawPanel() {
 		contentList = new ArrayList<>();
+		careTaker = CareTaker.getInstance();
 		setCursor(Cursor.getDefaultCursor());
 		setBackground(StyleUtil.DRAW_PANEL_COLOR);
 		addMouseListener(new MouseListener());
@@ -63,11 +67,6 @@ public class DrawPanel extends JPanel {
 		}
 	}
 
-	void draw(Graphics2D g2d, AbstractContent abstractShape) {
-		// 将画笔传入到各个子类中，用来完成各自的绘图
-		abstractShape.draw(g2d);
-	}
-
 	public void createNewGraphics() {
 		ContentType curContentType = GlobalStateHandler.getCurContentType();
 		// 设置光标
@@ -89,8 +88,25 @@ public class DrawPanel extends JPanel {
 
 		AbstractContent content = ContentFactory.createContent(curContentType);
 		contentList.add(content);
+		// 同时加入到备忘录中
+		Originator originator = new Originator(content);
+		careTaker.addMemento(originator.createMemento());
 		content.setColor(GlobalStateHandler.getCurColor());
 		content.setThickness(GlobalStateHandler.getThickness());
+	}
+
+	public void undo() {
+		// 撤销到上一步
+		Originator originator = new Originator();
+		originator.restoreMemento(careTaker.removeMemento(careTaker.getListSize() - 1));
+		System.out.println("remove: " + originator.getContent().getContentType());
+		// 同时移除该类暂存的列表
+		contentList.remove(getContentSize() - 1);
+	}
+
+	private void draw(Graphics2D g2d, AbstractContent abstractShape) {
+		// 将画笔传入到各个子类中，用来完成各自的绘图
+		abstractShape.draw(g2d);
 	}
 
 	private static class InnerClass {
