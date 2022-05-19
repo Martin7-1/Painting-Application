@@ -1,5 +1,6 @@
 package com.zyinnju.draw.shape;
 
+import com.zyinnju.draw.Point;
 import com.zyinnju.utils.PointUtil;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -19,6 +20,11 @@ public class Rectangle extends AbstractShape {
 	public void draw(Graphics2D g) {
 		super.draw(g);
 		drawRectangle(g);
+	}
+
+	@Override
+	public boolean hasPoint(Point point) {
+		return false;
 	}
 
 	private void drawRectangle(Graphics2D g) {

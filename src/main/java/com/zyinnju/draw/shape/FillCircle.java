@@ -1,5 +1,6 @@
 package com.zyinnju.draw.shape;
 
+import com.zyinnju.draw.Point;
 import com.zyinnju.utils.PointUtil;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -17,6 +18,11 @@ public class FillCircle extends AbstractShape {
 	public void draw(Graphics2D g) {
 		super.draw(g);
 		fillCircle(g);
+	}
+
+	@Override
+	public boolean hasPoint(Point point) {
+		return false;
 	}
 
 	private void fillCircle(Graphics2D g) {

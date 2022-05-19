@@ -1,5 +1,6 @@
 package com.zyinnju.draw.shape;
 
+import com.zyinnju.draw.Point;
 import com.zyinnju.utils.PointUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,6 +35,11 @@ public class FillRoundRect extends AbstractShape {
 	public void draw(Graphics2D g) {
 		super.draw(g);
 		fillRoundRectangle(g);
+	}
+
+	@Override
+	public boolean hasPoint(Point point) {
+		return false;
 	}
 
 	private void fillRoundRectangle(Graphics2D g) {

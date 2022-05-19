@@ -1,5 +1,6 @@
 package com.zyinnju.draw.shape;
 
+import com.zyinnju.draw.Point;
 import com.zyinnju.utils.PointUtil;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -17,6 +18,15 @@ public class Circle extends AbstractShape {
 	public void draw(Graphics2D g) {
 		super.draw(g);
 		drawOval(g);
+	}
+
+	@Override
+	public boolean hasPoint(Point point) {
+		// 半径
+		int radius = getRadius() / 2;
+		Point circlePoint = new Point(Math.abs(startPoint.getX() - endPoint.getX()) / 2, Math.abs(startPoint.getY() - endPoint.getY()) / 2);
+		// 判断距离
+		return point.distanceOf(circlePoint) <= radius;
 	}
 
 	private void drawOval(Graphics2D g) {

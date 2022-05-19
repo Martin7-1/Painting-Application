@@ -39,15 +39,26 @@ public class DrawPanel extends JPanel {
 	/**
 	 * 弹出选择窗
 	 */
-	private PopupMenu menu;
+	private final PopupMenu copyMenu;
+	/**
+	 * 复制的图形
+	 */
+	private AbstractShape copyShape;
+	/**
+	 * 复制时点击的位置
+	 */
+	private Point copyPoint;
 
 	private DrawPanel() {
 		contentList = new ArrayList<>();
 		careTaker = CareTaker.getInstance();
+		copyMenu = new PopupMenu();
 		setCursor(Cursor.getDefaultCursor());
 		setBackground(StyleUtil.DRAW_PANEL_COLOR);
 		addMouseListener(new MouseListener());
 		addMouseMotionListener(new MouseMotionListener());
+
+		initPopupMenu();
 	}
 
 	public static DrawPanel getInstance() {
@@ -122,6 +133,46 @@ public class DrawPanel extends JPanel {
 		abstractShape.draw(g2d);
 	}
 
+	private void initPopupMenu() {
+		MenuItem copyItem = new MenuItem("复制");
+		MenuItem pasteItem = new MenuItem("粘贴");
+		addCopyListener(copyItem);
+		addPasteListener(pasteItem);
+		copyMenu.add(copyItem);
+		copyMenu.add(pasteItem);
+	}
+
+	private void addCopyListener(MenuItem item) {
+		// 点击的话就复制当前的图形
+		item.addActionListener(e -> {
+			Point clickPoint = new Point(copyPoint.getX(), copyPoint.getY());
+			copyShape = getClickContent(clickPoint);
+		});
+	}
+
+	private void addPasteListener(MenuItem item) {
+		item.addActionListener(e -> {
+			// 绘制图形
+		});
+	}
+
+	private AbstractShape getClickContent(Point point) {
+		// 点击点在图案范围内的作为选择的标准
+		// fixme: 图案重叠如何选择?
+
+		for (AbstractContent content : contentList) {
+			// fixme: 不应该使用运行时的类型判断
+			if (content instanceof AbstractShape) {
+				AbstractShape shape = (AbstractShape) content;
+				if (shape.hasPoint(point)) {
+					return shape;
+				}
+			}
+		}
+
+		return null;
+	}
+
 	private static class InnerClass {
 		private static final DrawPanel INSTANCE = new DrawPanel();
 	}
@@ -135,8 +186,8 @@ public class DrawPanel extends JPanel {
 				// 如果按的是右键
 				// 需要跳出一个选择菜单来复制
 				// 获得当前选择的图标
-				Point clickPoint = new Point(e.getX(), e.getY());
-				AbstractContent content = getClickContent(clickPoint);
+				copyMenu.show(null, e.getX(), e.getY());
+				copyPoint = new Point(e.getX(), e.getY());
 			}
 		}
 
@@ -187,23 +238,6 @@ public class DrawPanel extends JPanel {
 		public void mouseExited(MouseEvent e) {
 			JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
 			mouseStatusBar.setText("point：");
-		}
-
-		private AbstractContent getClickContent(Point point) {
-			// 点击点在图案范围内的作为选择的标准
-			// fixme: 图案重叠如何选择?
-
-			for (AbstractContent content : contentList) {
-				// fixme: 不应该使用运行时的类型判断
-				if (content instanceof AbstractShape) {
-					AbstractShape shape = (AbstractShape) content;
-					if (shape.hasPoint(point)) {
-						return shape;
-					}
-				}
-			}
-
-			return null;
 		}
 	}
 
