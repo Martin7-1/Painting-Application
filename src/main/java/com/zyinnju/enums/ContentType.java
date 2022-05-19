@@ -16,6 +16,10 @@ import java.util.Map;
 public enum ContentType implements ValueEnum, Serializable {
 
 	/**
+	 * 鼠标选择
+	 */
+	CHOOSE("选择"),
+	/**
 	 * 图片
 	 */
 	IMAGE("图片"),

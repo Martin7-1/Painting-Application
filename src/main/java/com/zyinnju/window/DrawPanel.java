@@ -2,6 +2,7 @@ package com.zyinnju.window;
 
 import com.zyinnju.draw.AbstractContent;
 import com.zyinnju.draw.Point;
+import com.zyinnju.draw.shape.AbstractShape;
 import com.zyinnju.draw.tool.AbstractPaintTool;
 import com.zyinnju.enums.ContentType;
 import com.zyinnju.factory.ContentFactory;
@@ -13,6 +14,7 @@ import com.zyinnju.utils.StyleUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -30,7 +32,14 @@ public class DrawPanel extends JPanel {
 	 * 绘制内容的列表
 	 */
 	private final List<AbstractContent> contentList;
+	/**
+	 * 撤销功能负责人
+	 */
 	private final CareTaker careTaker;
+	/**
+	 * 弹出选择窗
+	 */
+	private PopupMenu menu;
 
 	private DrawPanel() {
 		contentList = new ArrayList<>();
@@ -87,12 +96,14 @@ public class DrawPanel extends JPanel {
 		}
 
 		AbstractContent content = ContentFactory.createContent(curContentType);
-		contentList.add(content);
-		// 同时加入到备忘录中
-		Originator originator = new Originator(content);
-		careTaker.addMemento(originator.createMemento());
-		content.setColor(GlobalStateHandler.getCurColor());
-		content.setThickness(GlobalStateHandler.getThickness());
+		if (content != null) {
+			contentList.add(content);
+			// 同时加入到备忘录中
+			Originator originator = new Originator(content);
+			careTaker.addMemento(originator.createMemento());
+			content.setColor(GlobalStateHandler.getCurColor());
+			content.setThickness(GlobalStateHandler.getThickness());
+		}
 	}
 
 	public void undo() {
@@ -116,6 +127,18 @@ public class DrawPanel extends JPanel {
 	}
 
 	private class MouseListener extends MouseAdapter {
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			int input = e.getButton();
+			if (input == InputEvent.BUTTON3_MASK) {
+				// 如果按的是右键
+				// 需要跳出一个选择菜单来复制
+				// 获得当前选择的图标
+				Point clickPoint = new Point(e.getX(), e.getY());
+				AbstractContent content = getClickContent(clickPoint);
+			}
+		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
@@ -164,6 +187,23 @@ public class DrawPanel extends JPanel {
 		public void mouseExited(MouseEvent e) {
 			JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
 			mouseStatusBar.setText("point：");
+		}
+
+		private AbstractContent getClickContent(Point point) {
+			// 点击点在图案范围内的作为选择的标准
+			// fixme: 图案重叠如何选择?
+
+			for (AbstractContent content : contentList) {
+				// fixme: 不应该使用运行时的类型判断
+				if (content instanceof AbstractShape) {
+					AbstractShape shape = (AbstractShape) content;
+					if (shape.hasPoint(point)) {
+						return shape;
+					}
+				}
+			}
+
+			return null;
 		}
 	}
 

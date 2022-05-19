@@ -120,7 +120,7 @@ public class PaintToolBar extends JToolBar {
 		}
 
 		// todo: 点击选择图形进行复制等
-		// contentButtonList[0].addActionListener();
+		contentButtonList[0].addActionListener(e -> GlobalStateHandler.setCurContentType(0));
 
 		// 保存操作
 		contentButtonList[1].addActionListener(e -> {

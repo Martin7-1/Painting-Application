@@ -52,5 +52,4 @@ public abstract class AbstractContent implements Serializable {
 	 * @param g 画笔
 	 */
 	public abstract void draw(Graphics2D g);
-
 }
