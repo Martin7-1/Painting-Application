@@ -14,7 +14,6 @@ import com.zyinnju.utils.StyleUtil;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class DrawPanel extends JPanel {
 	/**
 	 * 弹出选择窗
 	 */
-	private final PopupMenu copyMenu;
+	private final JPopupMenu copyMenu;
 	/**
 	 * 复制的图形
 	 */
@@ -52,13 +51,14 @@ public class DrawPanel extends JPanel {
 	private DrawPanel() {
 		contentList = new ArrayList<>();
 		careTaker = CareTaker.getInstance();
-		copyMenu = new PopupMenu();
+		copyMenu = new JPopupMenu();
 		setCursor(Cursor.getDefaultCursor());
 		setBackground(StyleUtil.DRAW_PANEL_COLOR);
 		addMouseListener(new MouseListener());
 		addMouseMotionListener(new MouseMotionListener());
 
 		initPopupMenu();
+		add(copyMenu);
 	}
 
 	public static DrawPanel getInstance() {
@@ -107,7 +107,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		AbstractContent content = ContentFactory.createContent(curContentType);
-		if (content != null) {
+		if (content != null && isSaveType(curContentType)) {
 			contentList.add(content);
 			// 同时加入到备忘录中
 			Originator originator = new Originator(content);
@@ -134,15 +134,17 @@ public class DrawPanel extends JPanel {
 	}
 
 	private void initPopupMenu() {
-		MenuItem copyItem = new MenuItem("复制");
-		MenuItem pasteItem = new MenuItem("粘贴");
+		JMenuItem copyItem = new JMenuItem("复制");
+		JMenuItem pasteItem = new JMenuItem("粘贴");
+		copyItem.setBackground(StyleUtil.BACKGROUND_COLOR);
+		pasteItem.setBackground(StyleUtil.BACKGROUND_COLOR);
 		addCopyListener(copyItem);
 		addPasteListener(pasteItem);
 		copyMenu.add(copyItem);
 		copyMenu.add(pasteItem);
 	}
 
-	private void addCopyListener(MenuItem item) {
+	private void addCopyListener(JMenuItem item) {
 		// 点击的话就复制当前的图形
 		item.addActionListener(e -> {
 			Point clickPoint = new Point(copyPoint.getX(), copyPoint.getY());
@@ -150,10 +152,14 @@ public class DrawPanel extends JPanel {
 		});
 	}
 
-	private void addPasteListener(MenuItem item) {
+	private void addPasteListener(JMenuItem item) {
 		item.addActionListener(e -> {
 			// 绘制图形
 		});
+	}
+
+	private boolean isSaveType(ContentType contentType) {
+		return !contentType.equals(ContentType.CHOOSE);
 	}
 
 	private AbstractShape getClickContent(Point point) {
@@ -181,51 +187,59 @@ public class DrawPanel extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			int input = e.getButton();
-			if (input == InputEvent.BUTTON3_MASK) {
-				// 如果按的是右键
-				// 需要跳出一个选择菜单来复制
-				// 获得当前选择的图标
-				copyMenu.show(null, e.getX(), e.getY());
-				copyPoint = new Point(e.getX(), e.getY());
+			if (GlobalStateHandler.getCurContentType().equals(ContentType.CHOOSE)) {
+				super.mouseClicked(e);
+				int input = e.getButton();
+				if (input == MouseEvent.BUTTON3) {
+					// 如果按的是右键
+					// 需要跳出一个选择菜单来复制
+					// 获得当前选择的图标
+					copyMenu.show(DrawPanel.this, e.getX(), e.getY());
+					copyPoint = new Point(e.getX(), e.getY());
+				}
+				repaint();
 			}
 		}
 
 		@Override
 		public void mousePressed(MouseEvent e) {
-			createNewGraphics();
-			JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
-			mouseStatusBar.setText("point: [" + e.getX() + ", " + e.getY() + "]");
-			AbstractContent content = getCurContent();
-			content.setStartPoint(new Point(e.getX(), e.getY()));
-			content.setEndPoint(new Point(e.getX(), e.getY()));
-
-			// 如果当前选择的图形是画笔或者橡皮檫，则进行下面的操作
-			ContentType curContentType = GlobalStateHandler.getCurContentType();
-
-			if (curContentType.equals(ContentType.ERASER) || curContentType.equals(ContentType.PENCIL) || curContentType.equals(ContentType.BRUSH)) {
-				((AbstractPaintTool) content).setLength(0);
+			if (!GlobalStateHandler.getCurContentType().equals(ContentType.CHOOSE)) {
+				createNewGraphics();
+				JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
+				mouseStatusBar.setText("point: [" + e.getX() + ", " + e.getY() + "]");
+				AbstractContent content = getCurContent();
 				content.setStartPoint(new Point(e.getX(), e.getY()));
 				content.setEndPoint(new Point(e.getX(), e.getY()));
-				((AbstractPaintTool) content).addLength();
-				createNewGraphics();
+
+				// 如果当前选择的图形是画笔或者橡皮檫，则进行下面的操作
+				ContentType curContentType = GlobalStateHandler.getCurContentType();
+
+				if (curContentType.equals(ContentType.ERASER) || curContentType.equals(ContentType.PENCIL) || curContentType.equals(ContentType.BRUSH)) {
+					((AbstractPaintTool) content).setLength(0);
+					content.setStartPoint(new Point(e.getX(), e.getY()));
+					content.setEndPoint(new Point(e.getX(), e.getY()));
+					((AbstractPaintTool) content).addLength();
+					createNewGraphics();
+				}
 			}
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent e) {
-			JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
-			mouseStatusBar.setText("point: [" + e.getX() + ", " + e.getY() + "]");
-			ContentType curContentType = GlobalStateHandler.getCurContentType();
-			AbstractContent content = getCurContent();
-			if (curContentType.equals(ContentType.ERASER) || curContentType.equals(ContentType.PENCIL) || curContentType.equals(ContentType.BRUSH)) {
-				content.setStartPoint(new Point(e.getX(), e.getY()));
-				((AbstractPaintTool) content).addLength();
-				createNewGraphics();
-			}
+			if (!GlobalStateHandler.getCurContentType().equals(ContentType.CHOOSE)) {
+				JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
+				mouseStatusBar.setText("point: [" + e.getX() + ", " + e.getY() + "]");
+				ContentType curContentType = GlobalStateHandler.getCurContentType();
+				AbstractContent content = getCurContent();
+				if (curContentType.equals(ContentType.ERASER) || curContentType.equals(ContentType.PENCIL) || curContentType.equals(ContentType.BRUSH)) {
+					content.setStartPoint(new Point(e.getX(), e.getY()));
+					((AbstractPaintTool) content).addLength();
+					createNewGraphics();
+				}
 
-			content.setEndPoint(new Point(e.getX(), e.getY()));
-			repaint();
+				content.setEndPoint(new Point(e.getX(), e.getY()));
+				repaint();
+			}
 		}
 
 		@Override
@@ -250,23 +264,25 @@ public class DrawPanel extends JPanel {
 		 */
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
-			mouseStatusBar.setText("point :[" + e.getX() + ", " + e.getY() + "]");
-			AbstractContent content = getCurContent();
-			AbstractContent lastContent = getContent(getContentSize() - 1);
-			ContentType curContentType = GlobalStateHandler.getCurContentType();
+			if (!GlobalStateHandler.getCurContentType().equals(ContentType.CHOOSE)) {
+				JLabel mouseStatusBar = MainFrame.getInstance().getMouseStatusBar();
+				mouseStatusBar.setText("point :[" + e.getX() + ", " + e.getY() + "]");
+				AbstractContent content = getCurContent();
+				AbstractContent lastContent = getContent(getContentSize() - 1);
+				ContentType curContentType = GlobalStateHandler.getCurContentType();
 
-			if (curContentType.equals(ContentType.ERASER) || curContentType.equals(ContentType.PENCIL) || curContentType.equals(ContentType.BRUSH)) {
-				lastContent.setStartPoint(new Point(e.getX(), e.getY()));
-				content.setStartPoint(new Point(e.getX(), e.getY()));
-				content.setEndPoint(new Point(e.getX(), e.getY()));
-				((AbstractPaintTool) content).addLength();
-				createNewGraphics();
-			} else {
-				// 除了上述的三种像素级的，其他只需要更新当前左边即可
-				content.setEndPoint(new Point(e.getX(), e.getY()));
+				if (curContentType.equals(ContentType.ERASER) || curContentType.equals(ContentType.PENCIL) || curContentType.equals(ContentType.BRUSH)) {
+					lastContent.setStartPoint(new Point(e.getX(), e.getY()));
+					content.setStartPoint(new Point(e.getX(), e.getY()));
+					content.setEndPoint(new Point(e.getX(), e.getY()));
+					((AbstractPaintTool) content).addLength();
+					createNewGraphics();
+				} else {
+					// 除了上述的三种像素级的，其他只需要更新当前左边即可
+					content.setEndPoint(new Point(e.getX(), e.getY()));
+				}
+				repaint();
 			}
-			repaint();
 		}
 
 		@Override
