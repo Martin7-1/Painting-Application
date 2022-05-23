@@ -61,6 +61,10 @@ public class DrawPanel extends JPanel {
 	 * 是否开始组合
 	 */
 	private boolean isBeginComposite;
+	/**
+	 * 组合的图形 fixme: 目前只支持组合一个
+	 */
+	private Component component;
 
 	private DrawPanel() {
 		contentList = new ArrayList<>();
@@ -170,15 +174,19 @@ public class DrawPanel extends JPanel {
 		JMenuItem copyItem = new JMenuItem("复制");
 		JMenuItem pasteItem = new JMenuItem("粘贴");
 		JMenuItem compositeItem = new JMenuItem("组合");
+		JMenuItem compositePasteItem = new JMenuItem("组合粘贴");
 		copyItem.setBackground(StyleUtil.BACKGROUND_COLOR);
 		pasteItem.setBackground(StyleUtil.BACKGROUND_COLOR);
 		compositeItem.setBackground(StyleUtil.BACKGROUND_COLOR);
+		compositePasteItem.setBackground(StyleUtil.BACKGROUND_COLOR);
 		addCopyListener(copyItem);
 		addPasteListener(pasteItem);
 		addCompositeListener(compositeItem);
+		addCompositePasteListener(compositePasteItem);
 		copyMenu.add(copyItem);
 		copyMenu.add(pasteItem);
 		copyMenu.add(compositeItem);
+		copyMenu.add(compositePasteItem);
 	}
 
 	private void addCopyListener(JMenuItem item) {
@@ -226,12 +234,37 @@ public class DrawPanel extends JPanel {
 					}
 				}
 			}
+			this.component = component;
+			System.out.println("composite finish! component size: " + component.getComponentSize());
 			isBeginComposite = false;
 		});
 	}
 
+	private void addCompositePasteListener(JMenuItem item) {
+		item.addActionListener(e -> {
+			if (component != null) {
+				for (int i = 0; i < component.getComponentSize(); i++) {
+					AbstractShape shape = (AbstractShape) component.getChild(i);
+					// 通过平移的距离来获得中心的点
+					Point centerPoint = new Point((compositeStartPoint.getX() + compositeEndPoint.getX()) / 2, (compositeStartPoint.getY() + compositeEndPoint.getY()) / 2);
+					int moveX = copyPoint.getX() - centerPoint.getX();
+					int moveY = copyPoint.getY() - centerPoint.getY();
+					Point rawCenterPoint = shape.getCenterPoint();
+					Point newCenterPoint = new Point(rawCenterPoint.getX() + moveX, rawCenterPoint.getY() + moveY);
+					AbstractShape cloneShape = shape.clone();
+					cloneShape.setStartPointAndEndPoint(newCenterPoint);
+					contentList.add(cloneShape);
+
+					Originator originator = new Originator(shape);
+					careTaker.addMemento(originator.createMemento());
+					repaint();
+				}
+			}
+		});
+	}
+
 	private boolean isInnerCompositeSpace(AbstractShape shape) {
-		return false;
+		return shape.isInner(compositeStartPoint, compositeEndPoint);
 	}
 
 	private boolean isSaveType(ContentType contentType) {

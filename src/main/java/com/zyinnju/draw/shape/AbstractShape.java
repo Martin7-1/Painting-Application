@@ -48,6 +48,14 @@ public abstract class AbstractShape extends AbstractContent implements Component
 		endPoint = newEndPoint;
 	}
 
+	public boolean isInner(Point startPoint, Point endPoint) {
+		return startPoint.between(this.startPoint, this.endPoint) && endPoint.between(this.startPoint, this.endPoint);
+	}
+
+	public Point getCenterPoint() {
+		return new Point((startPoint.getX() + endPoint.getX()) / 2, (startPoint.getY() + endPoint.getY()) / 2);
+	}
+
 	/**
 	 * 判断某个点是否在图形的面积内
 	 *
