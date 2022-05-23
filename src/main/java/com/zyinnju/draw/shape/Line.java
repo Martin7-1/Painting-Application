@@ -30,9 +30,4 @@ public class Line extends AbstractShape {
 	private double getSlope(Point pointOne, Point pointTwo) {
 		return (pointOne.getY() - pointTwo.getY()) / (double) (pointOne.getX() - pointTwo.getX());
 	}
-
-	@Override
-	public void operation() {
-
-	}
 }

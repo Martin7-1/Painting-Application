@@ -1,10 +1,9 @@
 package com.zyinnju.window;
 
-import com.zyinnju.composite.Component;
-import com.zyinnju.composite.Composite;
 import com.zyinnju.draw.AbstractContent;
 import com.zyinnju.draw.Point;
 import com.zyinnju.draw.shape.AbstractShape;
+import com.zyinnju.draw.shape.CompositeShape;
 import com.zyinnju.draw.tool.AbstractPaintTool;
 import com.zyinnju.enums.ContentType;
 import com.zyinnju.factory.ContentFactory;
@@ -64,7 +63,7 @@ public class DrawPanel extends JPanel {
 	/**
 	 * 组合的图形 fixme: 目前只支持组合一个
 	 */
-	private Component component;
+	private CompositeShape compositeShape;
 
 	private DrawPanel() {
 		contentList = new ArrayList<>();
@@ -221,19 +220,19 @@ public class DrawPanel extends JPanel {
 	private void addCompositeListener(JMenuItem item) {
 		item.addActionListener(e -> {
 			assert compositeStartPoint != null && compositeEndPoint != null;
-			Component component = new Composite();
+			CompositeShape compositeShape = new CompositeShape();
 			// 判断图形的 startPoint 和 endPoint 是否在里面
 			for (AbstractContent content : contentList) {
 				if (content instanceof AbstractShape) {
 					// 如果是图形的话
 					AbstractShape shape = (AbstractShape) content;
 					if (isInnerCompositeSpace(shape)) {
-						component.add(shape);
+						compositeShape.add(shape);
 					}
 				}
 			}
-			this.component = component;
-			System.out.println("composite finish! component size: " + component.getComponentSize());
+			this.compositeShape = compositeShape;
+			System.out.println("composite finish! composite shape size: " + compositeShape.getComponentSize());
 			isBeginComposite = false;
 			repaint();
 		});
@@ -241,23 +240,23 @@ public class DrawPanel extends JPanel {
 
 	private void addCompositePasteListener(JMenuItem item) {
 		item.addActionListener(e -> {
-			if (component != null) {
-				for (int i = 0; i < component.getComponentSize(); i++) {
-					AbstractShape shape = (AbstractShape) component.getChild(i);
-					// 通过平移的距离来获得中心的点
+			if (compositeShape != null) {
+				CompositeShape cloneShape = compositeShape.cloneSelf(compositeShape);
+				for (int i = 0; i < cloneShape.getComponentSize(); i++) {
+					AbstractShape shape = cloneShape.getChild(i);
 					Point centerPoint = new Point((compositeStartPoint.getX() + compositeEndPoint.getX()) / 2, (compositeStartPoint.getY() + compositeEndPoint.getY()) / 2);
 					int moveX = copyPoint.getX() - centerPoint.getX();
 					int moveY = copyPoint.getY() - centerPoint.getY();
 					Point rawCenterPoint = shape.getCenterPoint();
 					Point newCenterPoint = new Point(rawCenterPoint.getX() + moveX, rawCenterPoint.getY() + moveY);
-					AbstractShape cloneShape = shape.clone();
-					cloneShape.setStartPointAndEndPoint(newCenterPoint);
-					contentList.add(cloneShape);
-
-					Originator originator = new Originator(shape);
-					careTaker.addMemento(originator.createMemento());
-					repaint();
+					shape.setStartPointAndEndPoint(newCenterPoint);
 				}
+
+				// 加入
+				contentList.add(cloneShape);
+				Originator originator = new Originator(cloneShape);
+				careTaker.addMemento(originator.createMemento());
+				repaint();
 			}
 		});
 	}

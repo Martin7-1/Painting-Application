@@ -47,9 +47,4 @@ public class RoundRectangle extends AbstractShape {
 		g.drawRoundRect(PointUtil.getMinPointX(startPoint, endPoint),
 			PointUtil.getMinPointY(startPoint, endPoint), width, height, arcWidth, arcHeight);
 	}
-
-	@Override
-	public void operation() {
-
-	}
 }

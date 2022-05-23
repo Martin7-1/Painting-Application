@@ -1,6 +1,5 @@
 package com.zyinnju.draw.shape;
 
-import com.zyinnju.composite.Component;
 import com.zyinnju.draw.AbstractContent;
 import com.zyinnju.draw.Point;
 import lombok.Data;
@@ -22,7 +21,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @SuperBuilder
-public abstract class AbstractShape extends AbstractContent implements Component, Serializable, Cloneable {
+public abstract class AbstractShape extends AbstractContent implements Serializable, Cloneable {
 
 	@Override
 	public void draw(Graphics2D g) {
