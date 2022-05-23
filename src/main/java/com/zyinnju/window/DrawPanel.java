@@ -194,6 +194,7 @@ public class DrawPanel extends JPanel {
 			Point clickPoint = new Point(copyPoint.getX(), copyPoint.getY());
 			copyShape = getClickContent(clickPoint);
 			isBeginComposite = false;
+			repaint();
 			System.out.println("copy shape! " + copyShape);
 		});
 	}
@@ -236,6 +237,7 @@ public class DrawPanel extends JPanel {
 			this.component = component;
 			System.out.println("composite finish! component size: " + component.getComponentSize());
 			isBeginComposite = false;
+			repaint();
 		});
 	}
 
