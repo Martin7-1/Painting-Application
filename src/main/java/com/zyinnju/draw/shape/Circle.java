@@ -21,16 +21,6 @@ public class Circle extends AbstractShape {
 	}
 
 	@Override
-	public void setStartPointAndEndPoint(Point centerPoint) {
-		// 拷贝后原来的点其实还在
-		int radius = getRadius() / 2;
-		Point newStartPoint = new Point(centerPoint.getX() - radius, centerPoint.getY() - radius);
-		Point newEndPoint = new Point(centerPoint.getX() + radius, centerPoint.getY() + radius);
-		startPoint = newStartPoint;
-		endPoint = newEndPoint;
-	}
-
-	@Override
 	public boolean hasPoint(Point point) {
 		// 半径
 		int radius = getRadius() / 2;

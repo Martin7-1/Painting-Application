@@ -38,7 +38,14 @@ public abstract class AbstractShape extends AbstractContent implements Serializa
 	 *
 	 * @param centerPoint 中心点
 	 */
-	public abstract void setStartPointAndEndPoint(Point centerPoint);
+	public void setStartPointAndEndPoint(Point centerPoint) {
+		int width = Math.abs(startPoint.getX() - endPoint.getX());
+		int height = Math.abs(startPoint.getY() - endPoint.getY());
+		Point newStartPoint = new Point(centerPoint.getX() - width / 2, centerPoint.getY() - height / 2);
+		Point newEndPoint = new Point(centerPoint.getX() + width / 2, centerPoint.getY() + height / 2);
+		startPoint = newStartPoint;
+		endPoint = newEndPoint;
+	}
 
 	/**
 	 * 判断某个点是否在图形的面积内

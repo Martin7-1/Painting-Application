@@ -21,11 +21,6 @@ public class Hexagon extends AbstractShape {
 	}
 
 	@Override
-	public void setStartPointAndEndPoint(Point centerPoint) {
-
-	}
-
-	@Override
 	public boolean hasPoint(Point point) {
 		return false;
 	}
