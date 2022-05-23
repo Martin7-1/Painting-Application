@@ -1,5 +1,7 @@
 package com.zyinnju.window;
 
+import com.zyinnju.composite.Component;
+import com.zyinnju.composite.Composite;
 import com.zyinnju.draw.AbstractContent;
 import com.zyinnju.draw.Point;
 import com.zyinnju.draw.shape.AbstractShape;
@@ -212,8 +214,24 @@ public class DrawPanel extends JPanel {
 
 	private void addCompositeListener(JMenuItem item) {
 		item.addActionListener(e -> {
-			// todo: 组合
+			assert compositeStartPoint != null && compositeEndPoint != null;
+			Component component = new Composite();
+			// 判断图形的 startPoint 和 endPoint 是否在里面
+			for (AbstractContent content : contentList) {
+				if (content instanceof AbstractShape) {
+					// 如果是图形的话
+					AbstractShape shape = (AbstractShape) content;
+					if (isInnerCompositeSpace(shape)) {
+						component.add(shape);
+					}
+				}
+			}
+			isBeginComposite = false;
 		});
+	}
+
+	private boolean isInnerCompositeSpace(AbstractShape shape) {
+		return false;
 	}
 
 	private boolean isSaveType(ContentType contentType) {
@@ -282,12 +300,13 @@ public class DrawPanel extends JPanel {
 				}
 			} else {
 				// 如果是选择的模式下
+				if (!isBeginComposite) {
+					isBeginComposite = true;
+				}
+
 				compositeStartPoint = new Point(e.getX(), e.getY());
 				compositeEndPoint = new Point(e.getX(), e.getY());
-				isBeginComposite = true;
 				repaint();
-				System.out.println("init composite start point: " + compositeStartPoint.getX() + ", " + compositeStartPoint.getY());
-				System.out.println("init composite end point: " + compositeEndPoint.getX() + ", " + compositeEndPoint.getY());
 			}
 		}
 
@@ -308,7 +327,6 @@ public class DrawPanel extends JPanel {
 				repaint();
 			} else {
 				compositeEndPoint = new Point(e.getX(), e.getY());
-				System.out.println("init composite end point: " + compositeEndPoint.getX() + ", " + compositeEndPoint.getY());
 				repaint();
 			}
 		}
@@ -352,6 +370,9 @@ public class DrawPanel extends JPanel {
 					// 除了上述的三种像素级的，其他只需要更新当前左边即可
 					content.setEndPoint(new Point(e.getX(), e.getY()));
 				}
+				repaint();
+			} else {
+				compositeEndPoint = new Point(e.getX(), e.getY());
 				repaint();
 			}
 		}
