@@ -61,4 +61,9 @@ public class Pentagon extends AbstractShape {
 
 		return new int[]{pointOne, pointTwo, pointThree, pointThree, pointTwo};
 	}
+
+	@Override
+	public void operation() {
+
+	}
 }

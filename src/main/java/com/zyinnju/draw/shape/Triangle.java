@@ -44,4 +44,9 @@ public class Triangle extends AbstractShape {
 		int maxPoint = PointUtil.getMaxPointY(startPoint, endPoint);
 		return new int[]{PointUtil.getMinPointY(startPoint, endPoint), maxPoint, maxPoint};
 	}
+
+	@Override
+	public void operation() {
+
+	}
 }

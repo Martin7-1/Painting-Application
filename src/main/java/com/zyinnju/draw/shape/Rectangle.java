@@ -34,4 +34,9 @@ public class Rectangle extends AbstractShape {
 		g.drawRect(PointUtil.getMinPointX(startPoint, endPoint),
 			PointUtil.getMinPointY(startPoint, endPoint), width, height);
 	}
+
+	@Override
+	public void operation() {
+
+	}
 }

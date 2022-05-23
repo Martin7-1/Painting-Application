@@ -34,4 +34,9 @@ public class FillRect extends AbstractShape {
 		g.fillRect(PointUtil.getMinPointX(startPoint, endPoint),
 			PointUtil.getMinPointY(startPoint, endPoint), width, height);
 	}
+
+	@Override
+	public void operation() {
+
+	}
 }

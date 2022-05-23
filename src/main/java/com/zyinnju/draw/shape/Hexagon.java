@@ -54,4 +54,9 @@ public class Hexagon extends AbstractShape {
 		// 从左上开始顺时针
 		return new int[]{pointTwo, pointTwo, pointOne, pointThree, pointThree, pointOne};
 	}
+
+	@Override
+	public void operation() {
+
+	}
 }

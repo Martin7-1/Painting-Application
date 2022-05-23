@@ -39,4 +39,8 @@ public class Circle extends AbstractShape {
 		return Math.max(Math.abs(startPoint.getX() - endPoint.getX()), Math.abs(startPoint.getY() - endPoint.getY()));
 	}
 
+	@Override
+	public void operation() {
+		// todo
+	}
 }

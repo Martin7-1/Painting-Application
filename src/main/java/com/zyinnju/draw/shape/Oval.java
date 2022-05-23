@@ -39,4 +39,9 @@ public class Oval extends AbstractShape {
 		g.drawOval(PointUtil.getMinPointX(startPoint, endPoint),
 			PointUtil.getMinPointY(startPoint, endPoint), width, height);
 	}
+
+	@Override
+	public void operation() {
+
+	}
 }

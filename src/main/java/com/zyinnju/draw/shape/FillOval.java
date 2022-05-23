@@ -41,4 +41,9 @@ public class FillOval extends AbstractShape {
 		g.fillOval(PointUtil.getMinPointX(startPoint, endPoint),
 			PointUtil.getMinPointY(startPoint, endPoint), width, height);
 	}
+
+	@Override
+	public void operation() {
+
+	}
 }
