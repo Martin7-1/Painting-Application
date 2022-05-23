@@ -100,6 +100,7 @@ public class DrawPanel extends JPanel {
 
 		if (GlobalStateHandler.getCurContentType().equals(ContentType.CHOOSE) && isBeginComposite) {
 			// 绘制一个虚线框
+			System.out.println("draw dashed box!");
 			drawDashedBox(g2d);
 		}
 	}
@@ -151,7 +152,16 @@ public class DrawPanel extends JPanel {
 	}
 
 	private void drawDashedBox(Graphics2D g2d) {
-		// 根据组合的起始和结束位置绘制一个虚线框
+		// todo: 根据组合的起始和结束位置绘制一个虚线框
+		g2d.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10.0f, new float[]{3.0f, 3.0f}, 3.0f));
+		Color curColor = g2d.getColor();
+		g2d.setColor(Color.BLACK);
+		int width = Math.abs(compositeStartPoint.getX() - compositeEndPoint.getX());
+		int height = Math.abs(compositeStartPoint.getY() - compositeEndPoint.getY());
+		g2d.drawRect(compositeStartPoint.getX(), compositeStartPoint.getY(), width, height);
+
+		// 恢复原本的颜色
+		g2d.setColor(curColor);
 	}
 
 	private void initPopupMenu() {
@@ -215,7 +225,6 @@ public class DrawPanel extends JPanel {
 		// fixme: 图案重叠如何选择?
 
 		for (AbstractContent content : contentList) {
-			// fixme: 不应该使用运行时的类型判断
 			if (content instanceof AbstractShape) {
 				AbstractShape shape = (AbstractShape) content;
 				if (shape.hasPoint(point)) {
@@ -278,6 +287,7 @@ public class DrawPanel extends JPanel {
 				isBeginComposite = true;
 				repaint();
 				System.out.println("init composite start point: " + compositeStartPoint.getX() + ", " + compositeStartPoint.getY());
+				System.out.println("init composite end point: " + compositeEndPoint.getX() + ", " + compositeEndPoint.getY());
 			}
 		}
 
@@ -299,6 +309,7 @@ public class DrawPanel extends JPanel {
 			} else {
 				compositeEndPoint = new Point(e.getX(), e.getY());
 				System.out.println("init composite end point: " + compositeEndPoint.getX() + ", " + compositeEndPoint.getY());
+				repaint();
 			}
 		}
 
