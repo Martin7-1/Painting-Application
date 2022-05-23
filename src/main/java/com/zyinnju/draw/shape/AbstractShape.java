@@ -49,7 +49,7 @@ public abstract class AbstractShape extends AbstractContent implements Component
 	}
 
 	public boolean isInner(Point startPoint, Point endPoint) {
-		return startPoint.between(this.startPoint, this.endPoint) && endPoint.between(this.startPoint, this.endPoint);
+		return this.startPoint.between(startPoint, endPoint) && this.endPoint.between(startPoint, endPoint);
 	}
 
 	public Point getCenterPoint() {

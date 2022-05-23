@@ -106,7 +106,6 @@ public class DrawPanel extends JPanel {
 
 		if (GlobalStateHandler.getCurContentType().equals(ContentType.CHOOSE) && isBeginComposite) {
 			// 绘制一个虚线框
-			System.out.println("draw dashed box!");
 			drawDashedBox(g2d);
 		}
 	}
@@ -332,14 +331,17 @@ public class DrawPanel extends JPanel {
 					createNewGraphics();
 				}
 			} else {
-				// 如果是选择的模式下
-				if (!isBeginComposite) {
-					isBeginComposite = true;
-				}
+				int input = e.getButton();
+				if (input == MouseEvent.BUTTON1) {
+					// 如果是选择的模式下
+					if (!isBeginComposite) {
+						isBeginComposite = true;
+					}
 
-				compositeStartPoint = new Point(e.getX(), e.getY());
-				compositeEndPoint = new Point(e.getX(), e.getY());
-				repaint();
+					compositeStartPoint = new Point(e.getX(), e.getY());
+					compositeEndPoint = new Point(e.getX(), e.getY());
+					repaint();
+				}
 			}
 		}
 
@@ -359,8 +361,11 @@ public class DrawPanel extends JPanel {
 				content.setEndPoint(new Point(e.getX(), e.getY()));
 				repaint();
 			} else {
-				compositeEndPoint = new Point(e.getX(), e.getY());
-				repaint();
+				int input = e.getButton();
+				if (input == MouseEvent.BUTTON1) {
+					compositeEndPoint = new Point(e.getX(), e.getY());
+					repaint();
+				}
 			}
 		}
 
