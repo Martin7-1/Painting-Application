@@ -39,7 +39,8 @@ public class FillRoundRect extends AbstractShape {
 
 	@Override
 	public boolean hasPoint(Point point) {
-		return false;
+		return point.getX() <= PointUtil.getMaxPointX(startPoint, endPoint) && point.getX() >= PointUtil.getMinPointX(startPoint, endPoint)
+			&& point.getY() >= PointUtil.getMinPointY(startPoint, endPoint) && point.getY() <= PointUtil.getMaxPointY(startPoint, endPoint);
 	}
 
 	private void fillRoundRectangle(Graphics2D g) {

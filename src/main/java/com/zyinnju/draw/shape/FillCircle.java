@@ -22,7 +22,11 @@ public class FillCircle extends AbstractShape {
 
 	@Override
 	public boolean hasPoint(Point point) {
-		return false;
+		// 半径
+		int radius = getRadius() / 2;
+		Point circlePoint = new Point(Math.abs(startPoint.getX() - endPoint.getX()) / 2, Math.abs(startPoint.getY() - endPoint.getY()) / 2);
+		// 判断距离
+		return point.distanceOf(circlePoint) <= radius;
 	}
 
 	private void fillCircle(Graphics2D g) {

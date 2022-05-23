@@ -24,7 +24,12 @@ public class Oval extends AbstractShape {
 
 	@Override
 	public boolean hasPoint(Point point) {
-		return false;
+		// 判断点是否在椭圆内部的方法: b^2x^2 + a^2y^2 <= a^2b^2
+		Point ovalHeart = new Point(Math.abs(startPoint.getX() - endPoint.getX()) / 2, Math.abs(startPoint.getY() - endPoint.getY()) / 2);
+		Point newPoint = new Point(point.getX() - ovalHeart.getX(), point.getY() - ovalHeart.getY());
+		int a = Math.abs(startPoint.getX() - endPoint.getX());
+		int b = Math.abs(startPoint.getY() - endPoint.getY());
+		return Math.pow(b, 2) * Math.pow(newPoint.getX(), 2) + Math.pow(a, 2) * Math.pow(newPoint.getY(), 2) <= Math.pow(a, 2) * Math.pow(b, 2);
 	}
 
 	private void drawOval(Graphics2D g) {

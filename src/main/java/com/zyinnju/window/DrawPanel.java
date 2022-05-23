@@ -149,6 +149,7 @@ public class DrawPanel extends JPanel {
 		item.addActionListener(e -> {
 			Point clickPoint = new Point(copyPoint.getX(), copyPoint.getY());
 			copyShape = getClickContent(clickPoint);
+			System.out.println("copy shape! " + copyShape);
 		});
 	}
 

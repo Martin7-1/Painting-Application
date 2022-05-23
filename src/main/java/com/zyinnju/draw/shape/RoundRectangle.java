@@ -37,7 +37,8 @@ public class RoundRectangle extends AbstractShape {
 
 	@Override
 	public boolean hasPoint(Point point) {
-		return false;
+		return point.getX() <= PointUtil.getMaxPointX(startPoint, endPoint) && point.getX() >= PointUtil.getMinPointX(startPoint, endPoint)
+			&& point.getY() >= PointUtil.getMinPointY(startPoint, endPoint) && point.getY() <= PointUtil.getMaxPointY(startPoint, endPoint);
 	}
 
 	private void drawRoundRectangle(Graphics2D g) {

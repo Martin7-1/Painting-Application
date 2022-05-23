@@ -24,11 +24,12 @@ public class Rectangle extends AbstractShape {
 
 	@Override
 	public boolean hasPoint(Point point) {
-		return false;
+		return point.getX() <= PointUtil.getMaxPointX(startPoint, endPoint) && point.getX() >= PointUtil.getMinPointX(startPoint, endPoint)
+			&& point.getY() >= PointUtil.getMinPointY(startPoint, endPoint) && point.getY() <= PointUtil.getMaxPointY(startPoint, endPoint);
 	}
 
 	private void drawRectangle(Graphics2D g) {
-		int width = Math.abs(startPoint.getX() - endPoint.getY());
+		int width = Math.abs(startPoint.getX() - endPoint.getX());
 		int height = Math.abs(startPoint.getY() - endPoint.getY());
 		g.drawRect(PointUtil.getMinPointX(startPoint, endPoint),
 			PointUtil.getMinPointY(startPoint, endPoint), width, height);
