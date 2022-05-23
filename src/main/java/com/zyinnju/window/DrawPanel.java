@@ -47,6 +47,18 @@ public class DrawPanel extends JPanel {
 	 * 复制时点击的位置
 	 */
 	private Point copyPoint;
+	/**
+	 * 组合图形的开始的点
+	 */
+	private Point compositeStartPoint;
+	/**
+	 * 组合图形结束的点
+	 */
+	private Point compositeEndPoint;
+	/**
+	 * 是否开始组合
+	 */
+	private boolean isBeginComposite;
 
 	private DrawPanel() {
 		contentList = new ArrayList<>();
@@ -84,6 +96,11 @@ public class DrawPanel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		for (AbstractContent content : contentList) {
 			draw(g2d, content);
+		}
+
+		if (GlobalStateHandler.getCurContentType().equals(ContentType.CHOOSE) && isBeginComposite) {
+			// 绘制一个虚线框
+			drawDashedBox(g2d);
 		}
 	}
 
@@ -133,15 +150,23 @@ public class DrawPanel extends JPanel {
 		abstractShape.draw(g2d);
 	}
 
+	private void drawDashedBox(Graphics2D g2d) {
+		// 根据组合的起始和结束位置绘制一个虚线框
+	}
+
 	private void initPopupMenu() {
 		JMenuItem copyItem = new JMenuItem("复制");
 		JMenuItem pasteItem = new JMenuItem("粘贴");
+		JMenuItem compositeItem = new JMenuItem("组合");
 		copyItem.setBackground(StyleUtil.BACKGROUND_COLOR);
 		pasteItem.setBackground(StyleUtil.BACKGROUND_COLOR);
+		compositeItem.setBackground(StyleUtil.BACKGROUND_COLOR);
 		addCopyListener(copyItem);
 		addPasteListener(pasteItem);
+		addCompositeListener(compositeItem);
 		copyMenu.add(copyItem);
 		copyMenu.add(pasteItem);
+		copyMenu.add(compositeItem);
 	}
 
 	private void addCopyListener(JMenuItem item) {
@@ -149,6 +174,7 @@ public class DrawPanel extends JPanel {
 		item.addActionListener(e -> {
 			Point clickPoint = new Point(copyPoint.getX(), copyPoint.getY());
 			copyShape = getClickContent(clickPoint);
+			isBeginComposite = false;
 			System.out.println("copy shape! " + copyShape);
 		});
 	}
@@ -170,6 +196,13 @@ public class DrawPanel extends JPanel {
 					repaint();
 				}
 			}
+			isBeginComposite = false;
+		});
+	}
+
+	private void addCompositeListener(JMenuItem item) {
+		item.addActionListener(e -> {
+			// todo: 组合
 		});
 	}
 
@@ -238,6 +271,13 @@ public class DrawPanel extends JPanel {
 					((AbstractPaintTool) content).addLength();
 					createNewGraphics();
 				}
+			} else {
+				// 如果是选择的模式下
+				compositeStartPoint = new Point(e.getX(), e.getY());
+				compositeEndPoint = new Point(e.getX(), e.getY());
+				isBeginComposite = true;
+				repaint();
+				System.out.println("init composite start point: " + compositeStartPoint.getX() + ", " + compositeStartPoint.getY());
 			}
 		}
 
@@ -256,6 +296,9 @@ public class DrawPanel extends JPanel {
 
 				content.setEndPoint(new Point(e.getX(), e.getY()));
 				repaint();
+			} else {
+				compositeEndPoint = new Point(e.getX(), e.getY());
+				System.out.println("init composite end point: " + compositeEndPoint.getX() + ", " + compositeEndPoint.getY());
 			}
 		}
 
