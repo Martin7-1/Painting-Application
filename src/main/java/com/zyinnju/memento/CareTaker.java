@@ -11,7 +11,7 @@ public class CareTaker {
 	/**
 	 * 存储绘制的图形列表
 	 */
-	private final List<Memento> contentList;
+	private List<Memento> contentList;
 
 	private CareTaker() {
 		contentList = new ArrayList<>();
@@ -23,6 +23,10 @@ public class CareTaker {
 
 	public Memento getMemento(int index) {
 		return contentList.get(index);
+	}
+
+	public void removeAllMemento() {
+		contentList = new ArrayList<>();
 	}
 
 	public int getListSize() {

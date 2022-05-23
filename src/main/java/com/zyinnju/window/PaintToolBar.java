@@ -113,13 +113,11 @@ public class PaintToolBar extends JToolBar {
 		for (int i = 4; i < LENGTH; i++) {
 			int finalI = i;
 			contentButtonList[i].addActionListener(e -> {
-				// System.out.println("you choose: " + GlobalStateHandler.getToolTip(j));
 				GlobalStateHandler.setCurContentType(finalI);
 				repaint();
 			});
 		}
 
-		// todo: 点击选择图形进行复制等
 		contentButtonList[0].addActionListener(e -> GlobalStateHandler.setCurContentType(0));
 
 		// 保存操作
@@ -128,7 +126,7 @@ public class PaintToolBar extends JToolBar {
 			GlobalStateHandler.setIsSaved(true);
 		});
 		// 创建新文件操作
-		contentButtonList[2].addActionListener(e -> menu.createNewFile());
+		contentButtonList[2].addActionListener(e -> DrawPanel.getInstance().clearAllContent());
 		// 撤销操作
 		contentButtonList[3].addActionListener(e -> DrawPanel.getInstance().undo());
 

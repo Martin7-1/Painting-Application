@@ -31,7 +31,7 @@ public class DrawPanel extends JPanel {
 	/**
 	 * 绘制内容的列表
 	 */
-	private final List<AbstractContent> contentList;
+	private List<AbstractContent> contentList;
 	/**
 	 * 撤销功能负责人
 	 */
@@ -147,6 +147,15 @@ public class DrawPanel extends JPanel {
 		if (getContentSize() > 0) {
 			contentList.remove(getContentSize() - 1);
 		}
+		repaint();
+	}
+
+	/**
+	 * 清除所有内容
+	 */
+	public void clearAllContent() {
+		this.contentList = new ArrayList<>();
+		careTaker.removeAllMemento();
 		repaint();
 	}
 
