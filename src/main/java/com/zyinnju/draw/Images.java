@@ -1,7 +1,5 @@
 package com.zyinnju.draw;
 
-import com.zyinnju.draw.AbstractContent;
-
 import java.awt.*;
 
 /**

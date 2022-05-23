@@ -208,13 +208,11 @@ public class DrawPanel extends JPanel {
 				AbstractShape shape = copyShape.clone();
 				// 设置新的坐标
 				shape.setStartPointAndEndPoint(copyPoint);
-				if (shape != null) {
-					contentList.add(shape);
-					// 同时加入到备忘录中
-					Originator originator = new Originator(shape);
-					careTaker.addMemento(originator.createMemento());
-					repaint();
-				}
+				contentList.add(shape);
+				// 同时加入到备忘录中
+				Originator originator = new Originator(shape);
+				careTaker.addMemento(originator.createMemento());
+				repaint();
 			}
 			isBeginComposite = false;
 		});

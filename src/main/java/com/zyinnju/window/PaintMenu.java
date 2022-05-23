@@ -304,9 +304,7 @@ public class PaintMenu {
 		Map<Integer, String> map = initStrokeMap();
 		for (int i = 0; i < strokeItemList.length; i++) {
 			int tempI = i;
-			strokeItemList[i].addActionListener(e -> {
-				GlobalStateHandler.setThickness(map.get(tempI));
-			});
+			strokeItemList[i].addActionListener(e -> GlobalStateHandler.setThickness(map.get(tempI)));
 		}
 	}
 

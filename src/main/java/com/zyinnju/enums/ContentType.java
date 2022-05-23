@@ -88,7 +88,7 @@ public enum ContentType implements ValueEnum, Serializable {
 	 */
 	TEXT("文本");
 
-	private static Map<String, ContentType> SHAPE_MAP = new HashMap<>();
+	private static final Map<String, ContentType> SHAPE_MAP = new HashMap<>();
 
 	static {
 		for (ContentType contentType : ContentType.values()) {
