@@ -1,4 +1,4 @@
-package com.zyinnju.draw.shape;
+package com.zyinnju.draw;
 
 import com.zyinnju.draw.AbstractContent;
 

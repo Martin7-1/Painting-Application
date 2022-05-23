@@ -21,7 +21,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @SuperBuilder
-public abstract class AbstractShape extends AbstractContent implements Serializable {
+public abstract class AbstractShape extends AbstractContent implements Serializable, Cloneable {
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -34,10 +34,26 @@ public abstract class AbstractShape extends AbstractContent implements Serializa
 	}
 
 	/**
+	 * 通过中心点来设置图形的起始点和终止点
+	 *
+	 * @param centerPoint 中心点
+	 */
+	public abstract void setStartPointAndEndPoint(Point centerPoint);
+
+	/**
 	 * 判断某个点是否在图形的面积内
 	 *
 	 * @param point 点
 	 * @return true if the point is inner the shape, false otherwise
 	 */
 	public abstract boolean hasPoint(Point point);
+
+	@Override
+	public AbstractShape clone() {
+		try {
+			return (AbstractShape) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError();
+		}
+	}
 }

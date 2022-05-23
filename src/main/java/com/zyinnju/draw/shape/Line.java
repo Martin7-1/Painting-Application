@@ -22,6 +22,11 @@ public class Line extends AbstractShape {
 	}
 
 	@Override
+	public void setStartPointAndEndPoint(Point centerPoint) {
+
+	}
+
+	@Override
 	public boolean hasPoint(Point point) {
 		// 判断斜率相等
 		return Math.abs(getSlope(point, startPoint) - getSlope(point, endPoint)) <= 10e-5;

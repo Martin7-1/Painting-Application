@@ -1,6 +1,7 @@
 package com.zyinnju.factory;
 
 import com.zyinnju.draw.AbstractContent;
+import com.zyinnju.draw.Images;
 import com.zyinnju.draw.Text;
 import com.zyinnju.draw.shape.*;
 import com.zyinnju.draw.tool.Brush;

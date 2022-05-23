@@ -21,6 +21,11 @@ public class FillCircle extends AbstractShape {
 	}
 
 	@Override
+	public void setStartPointAndEndPoint(Point centerPoint) {
+
+	}
+
+	@Override
 	public boolean hasPoint(Point point) {
 		// 半径
 		int radius = getRadius() / 2;

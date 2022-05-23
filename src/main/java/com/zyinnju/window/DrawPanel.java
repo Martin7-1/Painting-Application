@@ -156,6 +156,20 @@ public class DrawPanel extends JPanel {
 	private void addPasteListener(JMenuItem item) {
 		item.addActionListener(e -> {
 			// 绘制图形
+			if (copyShape != null) {
+				// 往列表中添加一个新的图形即可
+				// 需要克隆
+				AbstractShape shape = copyShape.clone();
+				// 设置新的坐标
+				shape.setStartPointAndEndPoint(copyPoint);
+				if (shape != null) {
+					contentList.add(shape);
+					// 同时加入到备忘录中
+					Originator originator = new Originator(shape);
+					careTaker.addMemento(originator.createMemento());
+					repaint();
+				}
+			}
 		});
 	}
 
@@ -172,6 +186,7 @@ public class DrawPanel extends JPanel {
 			if (content instanceof AbstractShape) {
 				AbstractShape shape = (AbstractShape) content;
 				if (shape.hasPoint(point)) {
+					System.out.println("click shape!");
 					return shape;
 				}
 			}
@@ -197,6 +212,7 @@ public class DrawPanel extends JPanel {
 					// 获得当前选择的图标
 					copyMenu.show(DrawPanel.this, e.getX(), e.getY());
 					copyPoint = new Point(e.getX(), e.getY());
+					System.out.println("copy point: " + copyPoint.getX() + ", " + copyPoint.getY());
 				}
 				repaint();
 			}

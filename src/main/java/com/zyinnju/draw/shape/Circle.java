@@ -21,10 +21,15 @@ public class Circle extends AbstractShape {
 	}
 
 	@Override
+	public void setStartPointAndEndPoint(Point centerPoint) {
+
+	}
+
+	@Override
 	public boolean hasPoint(Point point) {
 		// 半径
 		int radius = getRadius() / 2;
-		Point circlePoint = new Point(Math.abs(startPoint.getX() - endPoint.getX()) / 2, Math.abs(startPoint.getY() - endPoint.getY()) / 2);
+		Point circlePoint = new Point((startPoint.getX() + endPoint.getX()) / 2, (startPoint.getY() + endPoint.getY()) / 2);
 		// 判断距离
 		return point.distanceOf(circlePoint) <= radius;
 	}

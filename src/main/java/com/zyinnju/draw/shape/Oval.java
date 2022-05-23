@@ -23,6 +23,11 @@ public class Oval extends AbstractShape {
 	}
 
 	@Override
+	public void setStartPointAndEndPoint(Point centerPoint) {
+
+	}
+
+	@Override
 	public boolean hasPoint(Point point) {
 		// 判断点是否在椭圆内部的方法: b^2x^2 + a^2y^2 <= a^2b^2
 		Point ovalHeart = new Point(Math.abs(startPoint.getX() - endPoint.getX()) / 2, Math.abs(startPoint.getY() - endPoint.getY()) / 2);
