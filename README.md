@@ -28,6 +28,8 @@ Shape包主要存储画图工具中的各种图形，所有图形都继承了父
 
 ### Window
 
+绘图界面的有关实现，主要包括 `DrawPanel`、`ColorPanel`、`MainFrame`、`PaintMenu`、`PaintToolBar`
+
 ### Utils
 
 ## Requirements

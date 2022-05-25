@@ -15,19 +15,19 @@ public class CompositeShape extends AbstractShape {
 
 	private final List<AbstractShape> shapeList = new ArrayList<>();
 
-	public void add(AbstractShape c) {
-		shapeList.add(c);
+	public void add(AbstractShape shape) {
+		shapeList.add(shape);
 	}
 
-	public void remove(AbstractShape c) {
-		shapeList.remove(c);
+	public void remove(AbstractShape shape) {
+		shapeList.remove(shape);
 	}
 
 	public AbstractShape getChild(int index) {
 		return shapeList.get(index);
 	}
 
-	public int getComponentSize() {
+	public int getShapeListSize() {
 		return shapeList.size();
 	}
 
@@ -38,9 +38,9 @@ public class CompositeShape extends AbstractShape {
 		}
 	}
 
-	public CompositeShape cloneSelf(CompositeShape compositeShape) {
+	public CompositeShape cloneSelf() {
 		CompositeShape cloneCompositeShape = new CompositeShape();
-		for (int i = 0; i < getComponentSize(); i++) {
+		for (int i = 0; i < getShapeListSize(); i++) {
 			AbstractShape shape = getChild(i).clone();
 			// 通过平移的距离来获得中心的点
 			cloneCompositeShape.add(shape);

@@ -29,10 +29,6 @@ import java.util.Objects;
 public class DrawPanel extends JPanel {
 
 	/**
-	 * 绘制内容的列表
-	 */
-	private List<AbstractContent> contentList;
-	/**
 	 * 撤销功能负责人
 	 */
 	private final CareTaker careTaker;
@@ -40,6 +36,10 @@ public class DrawPanel extends JPanel {
 	 * 弹出选择窗
 	 */
 	private final JPopupMenu copyMenu;
+	/**
+	 * 绘制内容的列表
+	 */
+	private List<AbstractContent> contentList;
 	/**
 	 * 复制的图形
 	 */
@@ -241,7 +241,7 @@ public class DrawPanel extends JPanel {
 				}
 			}
 			this.compositeShape = compositeShape;
-			System.out.println("composite finish! composite shape size: " + compositeShape.getComponentSize());
+			System.out.println("composite finish! composite shape size: " + compositeShape.getShapeListSize());
 			isBeginComposite = false;
 			repaint();
 		});
@@ -250,8 +250,8 @@ public class DrawPanel extends JPanel {
 	private void addCompositePasteListener(JMenuItem item) {
 		item.addActionListener(e -> {
 			if (compositeShape != null) {
-				CompositeShape cloneShape = compositeShape.cloneSelf(compositeShape);
-				for (int i = 0; i < cloneShape.getComponentSize(); i++) {
+				CompositeShape cloneShape = compositeShape.cloneSelf();
+				for (int i = 0; i < cloneShape.getShapeListSize(); i++) {
 					AbstractShape shape = cloneShape.getChild(i);
 					Point centerPoint = new Point((compositeStartPoint.getX() + compositeEndPoint.getX()) / 2, (compositeStartPoint.getY() + compositeEndPoint.getY()) / 2);
 					int moveX = copyPoint.getX() - centerPoint.getX();

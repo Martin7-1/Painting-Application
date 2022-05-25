@@ -5,9 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 /**
@@ -33,14 +31,6 @@ public abstract class AbstractContent implements Serializable {
 	 * 绘制内容的颜色
 	 */
 	protected Color color;
-	/**
-	 * 绘制内容所保存 or 打开的图片
-	 */
-	protected BufferedImage image;
-	/**
-	 * 绘画的面板
-	 */
-	protected JPanel board;
 	/**
 	 * 绘制该图形的粗细
 	 */
