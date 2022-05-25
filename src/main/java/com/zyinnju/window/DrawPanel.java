@@ -131,6 +131,7 @@ public class DrawPanel extends JPanel {
 		}
 
 		AbstractContent content = ContentFactory.createContent(curContentType);
+		System.out.println("create content: " + content);
 		doDrawContent(content, curContentType);
 	}
 
@@ -360,6 +361,7 @@ public class DrawPanel extends JPanel {
 					((AbstractPaintTool) content).addLength();
 					createNewGraphics();
 				}
+				repaint();
 			} else {
 				int input = e.getButton();
 				if (input == MouseEvent.BUTTON1) {

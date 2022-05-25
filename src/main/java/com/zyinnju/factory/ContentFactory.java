@@ -81,6 +81,7 @@ public class ContentFactory {
 				content = new Text();
 				Text text = (Text) content;
 				text.setText(JOptionPane.showInputDialog("请输入文字"));
+				System.out.println("text: " + text.getText());
 				text.setFontSize(GlobalStateHandler.getCurFontSize());
 				text.setFontName(GlobalStateHandler.getCurFont());
 				text.setIsItalicType(GlobalStateHandler.isItalicType());
