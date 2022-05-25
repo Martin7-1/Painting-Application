@@ -1,6 +1,9 @@
 package com.zyinnju.draw.shape;
 
 import com.zyinnju.draw.Point;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,6 +14,9 @@ import java.util.List;
  *
  * @author Zyi
  */
+@NoArgsConstructor
+@SuperBuilder
+@ToString
 public class CompositeShape extends AbstractShape {
 
 	private final List<AbstractShape> shapeList = new ArrayList<>();

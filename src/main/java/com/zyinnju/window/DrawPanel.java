@@ -268,11 +268,16 @@ public class DrawPanel extends JPanel {
 		item.addActionListener(e -> {
 			if (compositeShape != null) {
 				CompositeShape cloneShape = compositeShape.cloneSelf();
+				Point centerPoint = new Point((compositeStartPoint.getX() + compositeEndPoint.getX()) / 2, (compositeStartPoint.getY() + compositeEndPoint.getY()) / 2);
+				int moveX = copyPoint.getX() - centerPoint.getX();
+				int moveY = copyPoint.getY() - centerPoint.getY();
+				// 设置复合图形的起始和结束点
+				cloneShape.setStartPoint(new Point(compositeStartPoint.getX() + moveX, compositeStartPoint.getY() + moveY));
+				cloneShape.setEndPoint(new Point(compositeEndPoint.getX() + moveX, compositeEndPoint.getY() + moveY));
+				System.out.println(cloneShape.getStartPoint());
+				System.out.println(cloneShape.getEndPoint());
 				for (int i = 0; i < cloneShape.getShapeListSize(); i++) {
 					AbstractShape shape = cloneShape.getChild(i);
-					Point centerPoint = new Point((compositeStartPoint.getX() + compositeEndPoint.getX()) / 2, (compositeStartPoint.getY() + compositeEndPoint.getY()) / 2);
-					int moveX = copyPoint.getX() - centerPoint.getX();
-					int moveY = copyPoint.getY() - centerPoint.getY();
 					Point rawCenterPoint = shape.getCenterPoint();
 					Point newCenterPoint = new Point(rawCenterPoint.getX() + moveX, rawCenterPoint.getY() + moveY);
 					shape.setStartPointAndEndPoint(newCenterPoint);
