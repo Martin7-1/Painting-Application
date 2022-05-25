@@ -65,7 +65,7 @@ public class GlobalStateHandler {
 	/**
 	 * 当前字体大小
 	 */
-	private static int curFontSize;
+	private static int curFontSize = 8;
 	/**
 	 * 当前字体
 	 */
