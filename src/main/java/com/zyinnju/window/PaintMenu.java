@@ -33,10 +33,6 @@ public class PaintMenu {
 	private static final String AUTHOR_INFO = "src/main/resources/msg/AuthorInfo.txt";
 	private static final String USER_HELP_INFO = "src/main/resources/msg/HelpInfo.txt";
 	/**
-	 * 颜色栏
-	 */
-	private final ColorPanel colorPanel;
-	/**
 	 * 菜单栏
 	 */
 	@Getter
@@ -51,7 +47,6 @@ public class PaintMenu {
 	private JMenu[] menuList;
 
 	private PaintMenu() {
-		colorPanel = ColorPanel.getInstance();
 		initMenu();
 	}
 
@@ -130,8 +125,8 @@ public class PaintMenu {
 			JOptionPane.showMessageDialog(MainFrame.getInstance(), "文件格式错误！");
 			return;
 		}
-		if (!file.canWrite()) {
-			JOptionPane.showMessageDialog(fileChooser, "该文件不可写", "该文件不可写", JOptionPane.ERROR_MESSAGE);
+		if (!file.canRead()) {
+			JOptionPane.showMessageDialog(fileChooser, "该文件不可读", "该文件不可读", JOptionPane.ERROR_MESSAGE);
 		}
 
 		if ("".equals(file.getName())) {
@@ -143,8 +138,7 @@ public class PaintMenu {
 		try {
 			GlobalStateHandler.setCurContentType(ContentType.IMAGE);
 			image = ImageIO.read(file);
-			DrawPanel.getInstance().createNewGraphics();
-			// todo: 保存记录 用于撤销
+			DrawPanel.getInstance().createNewGraphics(image);
 			DrawPanel.getInstance().repaint();
 			GlobalStateHandler.setCurContentType(ContentType.PENCIL);
 			DrawPanel.getInstance().createNewGraphics();
@@ -291,8 +285,7 @@ public class PaintMenu {
 	private void addColorListener(JMenuItem setItemColor) {
 		setItemColor.addActionListener(e -> {
 			// 设置粗细
-			colorPanel.chooseColor();
-
+			ColorPanel.getInstance().chooseColor();
 		});
 	}
 

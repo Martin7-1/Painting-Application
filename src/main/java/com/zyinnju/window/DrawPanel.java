@@ -7,6 +7,7 @@ import com.zyinnju.draw.shape.CompositeShape;
 import com.zyinnju.draw.tool.AbstractPaintTool;
 import com.zyinnju.enums.ContentType;
 import com.zyinnju.factory.ContentFactory;
+import com.zyinnju.factory.ImageFactory;
 import com.zyinnju.handler.GlobalStateHandler;
 import com.zyinnju.memento.CareTaker;
 import com.zyinnju.memento.Originator;
@@ -17,6 +18,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -129,13 +131,17 @@ public class DrawPanel extends JPanel {
 		}
 
 		AbstractContent content = ContentFactory.createContent(curContentType);
-		if (content != null && isSaveType(curContentType)) {
-			contentList.add(content);
-			// 同时加入到备忘录中
-			Originator originator = new Originator(content);
-			careTaker.addMemento(originator.createMemento());
-			content.setColor(GlobalStateHandler.getCurColor());
-			content.setThickness(GlobalStateHandler.getThickness());
+		doDrawContent(content, curContentType);
+	}
+
+	public void createNewGraphics(BufferedImage image) {
+		// 绘制图像
+		ContentType curContentType = GlobalStateHandler.getCurContentType();
+		if (curContentType.equals(ContentType.IMAGE)) {
+			// 如果当前是图片的话
+			ImageFactory factory = new ImageFactory(image, this);
+			AbstractContent content = factory.createImage();
+			doDrawContent(content, curContentType);
 		}
 	}
 
@@ -157,6 +163,17 @@ public class DrawPanel extends JPanel {
 		this.contentList = new ArrayList<>();
 		careTaker.removeAllMemento();
 		repaint();
+	}
+
+	private void doDrawContent(AbstractContent content, ContentType curContentType) {
+		if (content != null && isSaveType(curContentType)) {
+			contentList.add(content);
+			// 同时加入到备忘录中
+			Originator originator = new Originator(content);
+			careTaker.addMemento(originator.createMemento());
+			content.setColor(GlobalStateHandler.getCurColor());
+			content.setThickness(GlobalStateHandler.getThickness());
+		}
 	}
 
 	private void draw(Graphics2D g2d, AbstractContent abstractShape) {

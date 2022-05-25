@@ -18,10 +18,6 @@ public class PaintToolBar extends JToolBar {
 
 	private static final int LENGTH = GlobalStateHandler.getResourceSize();
 	/**
-	 * 菜单栏
-	 */
-	private final PaintMenu menu;
-	/**
 	 * 各种图形的选择按钮
 	 */
 	private JButton[] contentButtonList;
@@ -47,7 +43,6 @@ public class PaintToolBar extends JToolBar {
 	private Checkbox italicButton;
 
 	private PaintToolBar() {
-		menu = PaintMenu.getInstance();
 		initToolBar();
 	}
 
@@ -122,7 +117,7 @@ public class PaintToolBar extends JToolBar {
 
 		// 保存操作
 		contentButtonList[1].addActionListener(e -> {
-			menu.saveFile();
+			PaintMenu.getInstance().saveFile();
 			GlobalStateHandler.setIsSaved(true);
 		});
 		// 创建新文件操作
