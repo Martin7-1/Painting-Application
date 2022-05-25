@@ -69,7 +69,7 @@ public class GlobalStateHandler {
 	/**
 	 * 当前字体
 	 */
-	private static String curFont;
+	private static String curFont = "宋体";
 	/**
 	 * 当前颜色
 	 */
