@@ -23,11 +23,11 @@ public class RoundRectangle extends AbstractShape {
 	/**
 	 * 圆角的水平直径
 	 */
-	private Integer arcWidth;
+	private int arcWidth = 0;
 	/**
 	 * 圆角的竖直直径
 	 */
-	private Integer arcHeight;
+	private int arcHeight = 0;
 
 	@Override
 	public void draw(Graphics2D g) {
@@ -42,7 +42,7 @@ public class RoundRectangle extends AbstractShape {
 	}
 
 	private void drawRoundRectangle(Graphics2D g) {
-		int width = Math.abs(startPoint.getX() - endPoint.getY());
+		int width = Math.abs(startPoint.getX() - endPoint.getX());
 		int height = Math.abs(startPoint.getY() - endPoint.getY());
 		g.drawRoundRect(PointUtil.getMinPointX(startPoint, endPoint),
 			PointUtil.getMinPointY(startPoint, endPoint), width, height, arcWidth, arcHeight);
